@@ -69,7 +69,7 @@ void myApp::fromNetworkLayer(ApplicationPacket * rcvPacket,
 	
     string packetName(rcvPacket->getName());
 
-    if (packetName.compare(SEND_PACKET_NAME) == 0) {
+    if (packetName.compare(SEND_DATA_NAME) == 0) {
         
         // This node is the final recipient for the packet
         if (recipientAddress.compare(SELF_NETWORK_ADDRESS) == 0) { //if the message's destination was this node
@@ -95,10 +95,10 @@ void myApp::fromNetworkLayer(ApplicationPacket * rcvPacket,
         }
 
     }else if (packetName.compare(GET_NEIGHBOURS_NAME) == 0){
-        ApplicationPacket *neighPkt = createGenericDataPacket(PUSH_NEIGHBOUR, pushNeighSN++);
+        ApplicationPacket *neighPkt = createGenericDataPacket((double)self, pushNeighSN++);
         neighPkt->setName(PUSH_NEIGHBOUR_NAME);
 
-        toNetworkLayer(neighPkt, sourceId);
+        toNetworkLayer(neighPkt, source);
         
     }else if (packetName.compare(PUSH_NEIGHBOUR_NAME) == 0){
         
@@ -122,7 +122,7 @@ void myApp::timerFiredCallback(int index)
 	    }
 
 		case GET_NEIGHBOURS:{
-			ApplicationPacket *newPkt = createGenericDataPacket(GET_NEIGHBOURS, dataSN++);
+			ApplicationPacket *newPkt = createGenericDataPacket((double)self, dataSN++);
 			newPkt->setName(GET_NEIGHBOURS_NAME);
             toNetworkLayer(newPkt, BROADCAST_NETWORK_ADDRESS);
 			break;

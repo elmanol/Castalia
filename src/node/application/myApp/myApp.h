@@ -16,14 +16,19 @@
 #include "VirtualApplication.h"
 #include <map>
 
+#define SEND_DATA_NAME "myApp data packet"
+#define GET_NEIGHBOURS_NAME "myApp getNeighbours packet"
+#define PUSH_NEIGHBOUR_NAME "myApp pushNeighbour packet"
+
+
 using namespace std;
 
-enum MyAppTimers {
+enum myAppTimers {
 	REQUEST_SAMPLE = 1,
-	SEND_PACKET = 2,
+	GET_NEIGHBOURS = 2,
 };
 
-class MyApp: public VirtualApplication {
+class myApp: public VirtualApplication {
  private:
 	double packet_rate;
 	double startupDelay;
@@ -47,7 +52,7 @@ class MyApp: public VirtualApplication {
  protected:
 	void startup();
 	void fromNetworkLayer(ApplicationPacket *, const char *, double, double);
-	void handleRadioControlMessage(RadioControlMessage *);
+	//void handleRadioControlMessage(RadioControlMessage *);
 	void timerFiredCallback(int);
 	void handleSensorReading(SensorReadingMessage *);
 	void finishSpecific();

@@ -19,7 +19,7 @@ simple MultipathRingsRouting like node.communication.routing.iRouting {
 	int netBufferSize = default (32);					// number of messages
 	int netDataFrameOverhead = default (14);			// bytes
 	int mpathRingsSetupFrameOverhead = default (13);	// bytes
-	int netSetupTimeout = default (50);					// msec
+	int startupDelay = default (50);					// msec
 
  gates:
 	output toCommunicationModule;
