@@ -24,7 +24,7 @@
 using namespace std;
 
 enum MultipathRingsRoutingTimers {
-	GET_NEIGHBOURS_TIMER = 1,
+	TOPOLOGY_SETUP_TIMEOUT = 1,
 };
 
 class MultipathRingsRouting: public VirtualRouting {
