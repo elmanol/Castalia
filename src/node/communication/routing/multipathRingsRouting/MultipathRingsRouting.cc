@@ -33,8 +33,11 @@ void MultipathRingsRouting::startup()
 	isScheduledNetSetupTimeout = false;
 	currentSequenceNumber = 0;
 
-	if (isSink)
-		sendTopologySetupPacket();
+	if (isSink){
+		setTimer(TOPOLOGY_MSG, netSetupTimeout);
+		trace()<<"Sent topology setup";
+	}
+	declareOutput("Propagated_data");
 }
 
 void MultipathRingsRouting::sendTopologySetupPacket()
@@ -61,8 +64,11 @@ void MultipathRingsRouting::sendControlMessage(multipathRingsRoutingControlDef k
 
 void MultipathRingsRouting::timerFiredCallback(int index)
 {
-	if (index != TOPOLOGY_SETUP_TIMEOUT)
-		return;
+	if (index != TOPOLOGY_SETUP_TIMEOUT){
+		sendTopologySetupPacket();
+			trace() << "Topoylogysdf";
+	}
+		//return;
 
 	isScheduledNetSetupTimeout = false;
 	if (tmpLevel == NO_LEVEL) {
@@ -101,7 +107,7 @@ void MultipathRingsRouting::processBufferedPacket()
 void MultipathRingsRouting::fromApplicationLayer(cPacket * pkt, const char *destination)
 {
 	string dst(destination);
-
+	
 	MultipathRingsRoutingPacket *netPacket =
 	    new MultipathRingsRoutingPacket("Multipath rings routing data packet", NETWORK_LAYER_PACKET);
 	netPacket->setMultipathRingsRoutingPacketKind(MPRINGS_DATA_PACKET);
@@ -129,6 +135,7 @@ void MultipathRingsRouting::fromApplicationLayer(cPacket * pkt, const char *dest
 
 void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double rssi, double lqi)
 {
+
 	MultipathRingsRoutingPacket *netPacket = dynamic_cast <MultipathRingsRoutingPacket*>(pkt);
 	if (!netPacket)
 		return;
@@ -148,10 +155,12 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 				tmpLevel = netPacket->getSenderLevel();
 				tmpSinkID = netPacket->getSinkID();
 			}
+			trace()<<"Self: "<< SELF_NETWORK_ADDRESS<<", MAC address: "<<macAddress<<", "<<"MPRINGS_TOPOLOGY_SETUP_PACKET from: "<<netPacket->getSource();
 			break;
 		}
 
 		case MPRINGS_DATA_PACKET:{
+			collectOutput("Propagated_data");
 			string dst(netPacket->getDestination());
 			string src(netPacket->getSource());
 			int senderLevel = netPacket->getSenderLevel();
@@ -190,6 +199,7 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 						trace() << "Discarding duplicate packet from node " << src;
 				}
 			}
+			trace()<<"Self net address: "<<SELF_NETWORK_ADDRESS<<", MAC Adress: "<<macAddress<<" "<<"MPRINGS_DATA_PACKET from: "<<netPacket->getSource();
 			break;
 		}
 	}

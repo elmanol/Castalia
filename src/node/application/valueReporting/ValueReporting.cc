@@ -19,18 +19,21 @@ void ValueReporting::startup()
 	maxSampleInterval = ((double)par("maxSampleInterval")) / 1000.0;
 	minSampleInterval = ((double)par("minSampleInterval")) / 1000.0;
 	currSentSampleSN = 0;
-	randomBackoffIntervalFraction = genk_dblrand(0);
-	sentOnce = false;
-	setTimer(REQUEST_SAMPLE, maxSampleInterval * randomBackoffIntervalFraction);
+	declareOutput("Packets sensed per node");
+	int locX = mobilityModule->getLocation().x;
+	int locY = mobilityModule->getLocation().y;
+	trace() << "X: "<<locX;
+	trace() << "Y: "<<locY;
 }
 
 void ValueReporting::timerFiredCallback(int index)
 {
-	switch (index) {
+	        trace() << "timer fired";
 
+	switch (index) {
 		case REQUEST_SAMPLE:{
 			requestSensorReading();
-			setTimer(REQUEST_SAMPLE, maxSampleInterval);
+			setTimer(REQUEST_SAMPLE, minSampleInterval);
 			break;
 		}
 	}
@@ -49,6 +52,7 @@ void ValueReporting::handleSensorReading(SensorReadingMessage * rcvReading)
 {
 	// int sensIndex =  rcvReading->getSensorIndex();
 	// string sensType(rcvReading->getSensorType());
+	collectOutput("Packets sensed per node");
 	double sensValue = rcvReading->getSensedValue();
 
 	// schedule the TX of the value
@@ -58,6 +62,8 @@ void ValueReporting::handleSensorReading(SensorReadingMessage * rcvReading)
 	tmpData.nodeID = (unsigned short)self;
 	tmpData.locX = mobilityModule->getLocation().x;
 	tmpData.locY = mobilityModule->getLocation().y;
+	trace() << "X: "<<tmpData.locX;
+	trace() << "Y: "<<tmpData.locY;
 
 	ValueReportingDataPacket *packet2Net =
 	    new ValueReportingDataPacket("Value reporting pck", APPLICATION_PACKET);
@@ -67,6 +73,21 @@ void ValueReporting::handleSensorReading(SensorReadingMessage * rcvReading)
 	currSentSampleSN++;
 
 	toNetworkLayer(packet2Net, SINK_NETWORK_ADDRESS);
-	sentOnce = true;
+    trace() << "Sent data packet to network layer";
 }
 
+void ValueReporting::handleNetworkControlMessage(cMessage * msg){
+
+    if (isSink) {
+        trace() << "I am the sink. I don't send packets";
+
+    } else {
+        setTimer(REQUEST_SAMPLE, minSampleInterval);
+    }
+
+}
+
+void ValueReporting::finishSpecific()
+{
+	trace() << "Simulation ended";
+}

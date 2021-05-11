@@ -20,7 +20,6 @@ using namespace std;
 
 enum ValueReportingTimers {
 	REQUEST_SAMPLE = 1,
-	SEND_DATA = 2,
 };
 
 class ValueReporting: public VirtualApplication {
@@ -40,6 +39,8 @@ class ValueReporting: public VirtualApplication {
 	void fromNetworkLayer(ApplicationPacket *, const char *, double, double);
 	void handleSensorReading(SensorReadingMessage *);
 	void timerFiredCallback(int);
+	void handleNetworkControlMessage(cMessage *);
+	void finishSpecific();
 };
 
 #endif				// _VALUEREPORTING_APPLICATIONMODULE_H_

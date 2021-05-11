@@ -17,6 +17,8 @@
 #include "VirtualRouting.h"
 #include "MultipathRingsRoutingPacket_m.h"
 #include "MultipathRingsRoutingControl_m.h"
+#define DATA_PACKET_NAME "Data packet"
+#define SETUP_PACKET_NAME "Setup packet"
 
 #define NO_LEVEL  -110
 #define NO_SINK   -120
@@ -25,6 +27,7 @@ using namespace std;
 
 enum MultipathRingsRoutingTimers {
 	TOPOLOGY_SETUP_TIMEOUT = 1,
+	TOPOLOGY_MSG = 2,
 };
 
 class MultipathRingsRouting: public VirtualRouting {
@@ -49,6 +52,7 @@ class MultipathRingsRouting: public VirtualRouting {
 
 	void sendTopologySetupPacket();
 	void sendControlMessage(multipathRingsRoutingControlDef);
+	void sendPacket();
 
 	void timerFiredCallback(int);
 	void processBufferedPacket();
