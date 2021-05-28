@@ -82,6 +82,7 @@ void TraceEnergySource::parseTraceFile() {
 
 		currentTimestamp += timeOffset;
 
+		std::cout<<currentTimestamp;
 		if ( currentTimestamp < 0.0 )
 			// negative timestamps and corresponding values are discarded
 			continue;

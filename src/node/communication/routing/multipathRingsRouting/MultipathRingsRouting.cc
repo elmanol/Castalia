@@ -35,7 +35,6 @@ void MultipathRingsRouting::startup()
 
 	if (isSink){
 		setTimer(TOPOLOGY_MSG, netSetupTimeout);
-		trace()<<"Sent topology setup";
 	}
 	declareOutput("Propagated_data");
 }
@@ -50,6 +49,7 @@ void MultipathRingsRouting::sendTopologySetupPacket()
 	setupPkt->setSinkID(currentSinkID);
 	setupPkt->setSenderLevel(currentLevel);
 	toMacLayer(setupPkt, BROADCAST_MAC_ADDRESS);
+	trace()<<"Sent topology setup";
 }
 
 void MultipathRingsRouting::sendControlMessage(multipathRingsRoutingControlDef kind)
@@ -66,7 +66,7 @@ void MultipathRingsRouting::timerFiredCallback(int index)
 {
 	if (index != TOPOLOGY_SETUP_TIMEOUT){
 		sendTopologySetupPacket();
-			trace() << "Topoylogysdf";
+		trace()<<"Sent topology setup";
 	}
 		//return;
 
