@@ -11,6 +11,7 @@
  *******************************************************************************/
 
 #include "MultipathRingsRouting.h"
+#include "VirtualEnergyManager.h"
 
 Define_Module(MultipathRingsRouting);
 
@@ -135,6 +136,14 @@ void MultipathRingsRouting::fromApplicationLayer(cPacket * pkt, const char *dest
 
 void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double rssi, double lqi)
 {
+
+	/* Obtain a pointer to the energy manager module */
+	VirtualEnergyManager* engyMgr =
+		check_and_cast<VirtualEnergyManager*>(getParentModule()->getParentModule()->
+		getSubmodule("ResourceManager")->getSubmodule("EnergySubsystem")->getSubmodule("EnergyManager"));
+		double currentEnergyRatio = engyMgr->getCurrentEnergyRatio();
+
+		trace() << "Current energy ratio: " << currentEnergyRatio;
 
 	MultipathRingsRoutingPacket *netPacket = dynamic_cast <MultipathRingsRoutingPacket*>(pkt);
 	if (!netPacket)
