@@ -24,6 +24,10 @@ void ValueReporting::startup()
 	int locY = mobilityModule->getLocation().y;
 	trace() << "X: "<<locX;
 	trace() << "Y: "<<locY;
+	numNodes = getParentModule()->getParentModule()->par("numNodes");
+	packetsSent=0;
+	packetsReceived=0;
+	bytesReceived.clear();
 }
 
 void ValueReporting::timerFiredCallback(int index)
@@ -73,6 +77,7 @@ void ValueReporting::handleSensorReading(SensorReadingMessage * rcvReading)
 	currSentSampleSN++;
 
 	toNetworkLayer(packet2Net, SINK_NETWORK_ADDRESS);
+	packetsSent++;
     trace() << "Sent data packet to network layer";
 }
 
@@ -87,7 +92,36 @@ void ValueReporting::handleNetworkControlMessage(cMessage * msg){
 
 }
 
-void ValueReporting::finishSpecific()
-{
-	trace() << "Simulation ended";
+void ValueReporting::finishSpecific() {
+	if (isSink) {
+		declareOutput("Packets reception rate");
+		declareOutput("Packets loss rate");
+
+		cTopology *topo;	// temp variable to access packets received by other nodes
+		topo = new cTopology("topo");
+		topo->extractByNedTypeName(cStringTokenizer("node.Node").asVector());
+
+		long bytesDelivered = 0;
+		for (int i = 0; i < numNodes; i++) {
+			ValueReporting *appModule = dynamic_cast<ValueReporting*>
+				(topo->getNode(i)->getModule()->getSubmodule("Application"));
+			if (appModule) {
+				int packetsSent_ = appModule->getPacketsSent();
+				if (packetsSent_ > 0) { // this node sent us some packets
+					float rate = (float)packetsReceived[i]/packetsSent;
+					collectOutput("Packets reception rate", i, "total", rate);
+					collectOutput("Packets loss rate", i, "total", 1-rate);
+				}
+
+				bytesDelivered += appModule->getBytesReceived(self);
+			}
+		}
+		delete(topo);
+
+		if (packet_rate > 0 && bytesDelivered > 0) {
+			double energy = (enMgrModule->getTotEnergySupplied() * 1000000000)/(bytesDelivered * 8);	//in nanojoules/bit
+			declareOutput("Energy nJ/bit");
+			collectOutput("Energy nJ/bit","",energy);
+		}
+	}
 }

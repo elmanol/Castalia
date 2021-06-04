@@ -33,6 +33,13 @@ class ValueReporting: public VirtualApplication {
 
 	double randomBackoffIntervalFraction;
 	bool sentOnce;
+	//variables below are used to determine the packet delivery rates.	
+	int numNodes;
+	int packetsSent;
+	int packetsReceived;
+	// map<long,int> packetsReceived;
+	map<long,int> bytesReceived;
+	// map<long,int> packetsSent;
 
  protected:
 	void startup();
@@ -40,6 +47,7 @@ class ValueReporting: public VirtualApplication {
 	void handleSensorReading(SensorReadingMessage *);
 	void timerFiredCallback(int);
 	void handleNetworkControlMessage(cMessage *);
+	int getPacketsSent() { return packetsSent; }	
 	void finishSpecific();
 };
 

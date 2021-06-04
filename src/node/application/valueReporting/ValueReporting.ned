@@ -25,6 +25,7 @@ simple ValueReporting like node.application.iApplication {
 	int maxSampleInterval = default (60000);// in msec
 	int minSampleInterval = default (10000); // in msec
 	bool isSink = default (false);
+	string recipient = default ("0");	// Destination for packets received in this node. 
 
  gates:
  	output toCommunicationModule;
