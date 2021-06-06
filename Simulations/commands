@@ -1,0 +1,3 @@
+CastaliaResults -i 210606-174535.txt -s energy
+CastaliaResults -i 210606-174535.txt -s packets
+CastaliaResults -i 210606-174535.txt -s "packet break"

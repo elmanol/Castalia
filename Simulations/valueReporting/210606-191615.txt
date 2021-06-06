@@ -1,11 +1,11 @@
 Castalia| what:[General,harvesting] (1)
-Castalia| when:2021-06-04 11:33
+Castalia| when:2021-06-06 19:16
 Castalia| repeat:0 label:General
 Castalia|		module:SN.Simulation
 Castalia|			simple output name:Execution time, seconds
-Castalia|				0.044
+Castalia|				0.051
 Castalia|			simple output name:Execution ratio (simtime/realtime)
-Castalia|				5455.15075766
+Castalia|				4706.40457523
 Castalia|	module:SN.node[0].ResourceManager.EnergySubsystem.EnergyStorage.Batteries[0]
 Castalia|		simple output name:Device Energy
 Castalia|			0 Charged
@@ -55,6 +55,19 @@ Castalia|			1 sent data pkts
 Castalia|	module:SN.node[0].Communication.Routing
 Castalia|		simple output name:Propagated_data
 Castalia|			713 
+Castalia|	module:SN.node[0].Application
+Castalia|		 index:1 simple output name:Packets loss rate
+Castalia|			0 total
+Castalia|		 index:2 simple output name:Packets loss rate
+Castalia|			0.00420171 total
+Castalia|		 index:3 simple output name:Packets loss rate
+Castalia|			0 total
+Castalia|		 index:1 simple output name:Packets reception rate
+Castalia|			1 total
+Castalia|		 index:2 simple output name:Packets reception rate
+Castalia|			0.995798 total
+Castalia|		 index:3 simple output name:Packets reception rate
+Castalia|			1 total
 Castalia|	module:SN.node[1].ResourceManager.EnergySubsystem.EnergyStorage.Batteries[0]
 Castalia|		simple output name:Device Energy
 Castalia|			0 Charged
@@ -214,9 +227,9 @@ Castalia|			238
 Castalia| repeat:0 label:harvesting
 Castalia|		module:SN.Simulation
 Castalia|			simple output name:Execution time, seconds
-Castalia|				0.046
+Castalia|				0.05
 Castalia|			simple output name:Execution ratio (simtime/realtime)
-Castalia|				5217.39130435
+Castalia|				4800.0
 Castalia|	module:SN.node[0].ResourceManager.EnergySubsystem.EnergyStorage.Batteries[0]
 Castalia|		simple output name:Device Energy
 Castalia|			0 Charged
@@ -264,6 +277,19 @@ Castalia|			1 sent data pkts
 Castalia|	module:SN.node[0].Communication.Routing
 Castalia|		simple output name:Propagated_data
 Castalia|			713 
+Castalia|	module:SN.node[0].Application
+Castalia|		 index:1 simple output name:Packets loss rate
+Castalia|			0 total
+Castalia|		 index:2 simple output name:Packets loss rate
+Castalia|			0.00420171 total
+Castalia|		 index:3 simple output name:Packets loss rate
+Castalia|			0 total
+Castalia|		 index:1 simple output name:Packets reception rate
+Castalia|			1 total
+Castalia|		 index:2 simple output name:Packets reception rate
+Castalia|			0.995798 total
+Castalia|		 index:3 simple output name:Packets reception rate
+Castalia|			1 total
 Castalia|	module:SN.node[1].ResourceManager.EnergySubsystem.EnergyStorage.Batteries[0]
 Castalia|		simple output name:Device Energy
 Castalia|			0 Charged

@@ -25,9 +25,12 @@ void ValueReporting::startup()
 	trace() << "X: "<<locX;
 	trace() << "Y: "<<locY;
 	numNodes = getParentModule()->getParentModule()->par("numNodes");
-	packetsSent=0;
-	packetsReceived=0;
+	packetsSent.clear();
+	packetsReceived.clear();
 	bytesReceived.clear();
+	packetLatency.clear();
+
+
 }
 
 void ValueReporting::timerFiredCallback(int index)
@@ -46,10 +49,21 @@ void ValueReporting::timerFiredCallback(int index)
 void ValueReporting::fromNetworkLayer(ApplicationPacket * genericPacket,
 		 const char *source, double rssi, double lqi)
 {
+	int sourceId = atoi(source);
 	ValueReportingDataPacket *rcvPacket = check_and_cast<ValueReportingDataPacket*>(genericPacket);
 	ValueReportData theData = rcvPacket->getExtraData();
-	if (isSink)
+
+	if (isSink){
 		trace() << "Sink received from: " << theData.nodeID << " \tvalue=" << rcvPacket->getData();
+		simtime_t timeDifference = simTime() - rcvPacket->getCreationTime();
+		packetLatency[sourceId] = timeDifference.dbl();
+ 		trace() << "packetLatency[sourceId]1: " << packetLatency[sourceId];
+ 		trace() << "packetLatency[sourceId]2: " << timeDifference.dbl();
+
+ 		packetsReceived[sourceId]++;
+		packetsReceivedSum++;
+	}
+
 }
 
 void ValueReporting::handleSensorReading(SensorReadingMessage * rcvReading)
@@ -66,8 +80,6 @@ void ValueReporting::handleSensorReading(SensorReadingMessage * rcvReading)
 	tmpData.nodeID = (unsigned short)self;
 	tmpData.locX = mobilityModule->getLocation().x;
 	tmpData.locY = mobilityModule->getLocation().y;
-	trace() << "X: "<<tmpData.locX;
-	trace() << "Y: "<<tmpData.locY;
 
 	ValueReportingDataPacket *packet2Net =
 	    new ValueReportingDataPacket("Value reporting pck", APPLICATION_PACKET);
@@ -77,7 +89,8 @@ void ValueReporting::handleSensorReading(SensorReadingMessage * rcvReading)
 	currSentSampleSN++;
 
 	toNetworkLayer(packet2Net, SINK_NETWORK_ADDRESS);
-	packetsSent++;
+	packetsSent[atoi(SINK_NETWORK_ADDRESS)]++;
+
     trace() << "Sent data packet to network layer";
 }
 
@@ -93,9 +106,12 @@ void ValueReporting::handleNetworkControlMessage(cMessage * msg){
 }
 
 void ValueReporting::finishSpecific() {
+	
+	declareOutput("Packets reception rate");
+	declareOutput("Packets loss rate");
+	declareOutput("lAvg atency");
+
 	if (isSink) {
-		declareOutput("Packets reception rate");
-		declareOutput("Packets loss rate");
 
 		cTopology *topo;	// temp variable to access packets received by other nodes
 		topo = new cTopology("topo");
@@ -106,9 +122,11 @@ void ValueReporting::finishSpecific() {
 			ValueReporting *appModule = dynamic_cast<ValueReporting*>
 				(topo->getNode(i)->getModule()->getSubmodule("Application"));
 			if (appModule) {
-				int packetsSent_ = appModule->getPacketsSent();
-				if (packetsSent_ > 0) { // this node sent us some packets
+				int packetsSent = appModule->getPacketsSent(self);
+				if (packetsSent > 0) { // this node sent us some packets
+					double latency = packetLatency[i]/packetsSent;
 					float rate = (float)packetsReceived[i]/packetsSent;
+					collectOutput("Avg latency", i, "total", latency);
 					collectOutput("Packets reception rate", i, "total", rate);
 					collectOutput("Packets loss rate", i, "total", 1-rate);
 				}
@@ -118,10 +136,10 @@ void ValueReporting::finishSpecific() {
 		}
 		delete(topo);
 
-		if (packet_rate > 0 && bytesDelivered > 0) {
-			double energy = (enMgrModule->getTotEnergySupplied() * 1000000000)/(bytesDelivered * 8);	//in nanojoules/bit
-			declareOutput("Energy nJ/bit");
-			collectOutput("Energy nJ/bit","",energy);
-		}
+		// if (packet_rate > 0 && bytesDelivered > 0) {
+		// 	double energy = (enMgrModule->getTotEnergySupplied() * 1000000000)/(bytesDelivered * 8);	//in nanojoules/bit
+		// 	declareOutput("Energy nJ/bit");
+		// 	collectOutput("Energy nJ/bit","",energy);
+		// }
 	}
 }

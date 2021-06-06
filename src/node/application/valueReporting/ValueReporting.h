@@ -35,11 +35,14 @@ class ValueReporting: public VirtualApplication {
 	bool sentOnce;
 	//variables below are used to determine the packet delivery rates.	
 	int numNodes;
-	int packetsSent;
-	int packetsReceived;
-	// map<long,int> packetsReceived;
+	int packetsSentSum;
+	//simtime_t packetLatency;
+	//simtime_t packetLatencySum;
+	int packetsReceivedSum;
+	map<double,int> packetLatency;
+	map<long,int> packetsReceived;
 	map<long,int> bytesReceived;
-	// map<long,int> packetsSent;
+	map<long,int> packetsSent;
 
  protected:
 	void startup();
@@ -47,8 +50,13 @@ class ValueReporting: public VirtualApplication {
 	void handleSensorReading(SensorReadingMessage *);
 	void timerFiredCallback(int);
 	void handleNetworkControlMessage(cMessage *);
-	int getPacketsSent() { return packetsSent; }	
 	void finishSpecific();
+
+ public:
+	int getPacketsSent(int addr) { return packetsSent[addr]; }
+	int getPacketsReceived(int addr) { return packetsReceived[addr]; }
+	int getBytesReceived(int addr) { return bytesReceived[addr]; }
+
 };
 
 #endif				// _VALUEREPORTING_APPLICATIONMODULE_H_
