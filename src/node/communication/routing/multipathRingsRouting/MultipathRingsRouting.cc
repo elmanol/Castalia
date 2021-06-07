@@ -17,7 +17,9 @@ Define_Module(MultipathRingsRouting);
 
 void MultipathRingsRouting::startup()
 {
+	collectBatterySN =0;
 	netSetupTimeout = (double)par("netSetupTimeout") / 1000.0;
+	collectBatteryTimer = par("collectBatteryTimer");
 	mpathRingsSetupFrameOverhead = par("mpathRingsSetupFrameOverhead");
 
 	// check that the Application module used has the boolean parameter "isSink"
@@ -33,6 +35,8 @@ void MultipathRingsRouting::startup()
 	isConnected = (isSink) ? true : false;
 	isScheduledNetSetupTimeout = false;
 	currentSequenceNumber = 0;
+
+	setTimer(COLLECT_BATTERY, collectBatteryTimer);
 
 	if (isSink){
 		setTimer(TOPOLOGY_MSG, netSetupTimeout);
@@ -67,36 +71,54 @@ void MultipathRingsRouting::sendControlMessage(multipathRingsRoutingControlDef k
 
 void MultipathRingsRouting::timerFiredCallback(int index)
 {
-	if (index != TOPOLOGY_SETUP_TIMEOUT){
-		sendTopologySetupPacket();
-		trace()<<"Sent topology setup";
-	}
-		//return;
 
-	isScheduledNetSetupTimeout = false;
-	if (tmpLevel == NO_LEVEL) {
-		setTimer(TOPOLOGY_SETUP_TIMEOUT, netSetupTimeout);
-		isScheduledNetSetupTimeout = true;
-	} else if (currentLevel == NO_LEVEL) {
-		//Broadcast to all nodes of currentLevel-1
-		currentLevel = tmpLevel + 1;
-		currentSinkID = tmpSinkID;
+		
+	if (index == COLLECT_BATTERY){
 
-		if (!isConnected) {
-			isConnected = true;
-			sendControlMessage(MPRINGS_CONNECTED_TO_TREE);
-			trace() << "Connected to " << currentSinkID << " at level " << currentLevel;
-			if (!TXBuffer.empty())
-				processBufferedPacket();
-		} else {
-			sendControlMessage(MPRINGS_TREE_LEVEL_UPDATED);
-			trace() << "Reconnected to " << currentSinkID << " at level " << currentLevel;
+		/* Obtain a pointer to the energy manager module */
+		VirtualEnergyManager* engyMgr =
+			check_and_cast<VirtualEnergyManager*>(getParentModule()->getParentModule()->
+			getSubmodule("ResourceManager")->getSubmodule("EnergySubsystem")->getSubmodule("EnergyManager"));
+
+		double currentEnergyRatio = engyMgr->getCurrentEnergyRatio();
+		trace() << "Current energy ratio: " << currentEnergyRatio;
+		collectBatterySN++;
+		collectOutput("Battery level", collectBatterySN*collectBatteryTimer, "TimeOverBattery", currentEnergyRatio);
+		setTimer(COLLECT_BATTERY, collectBatteryTimer);
+
+	}else{
+
+		if (index == TOPOLOGY_MSG){
+			sendTopologySetupPacket();
+			trace()<<"Sent topology setup";
+
 		}
-		sendTopologySetupPacket();
-	}
 
-	tmpLevel = isSink ? 0 : NO_LEVEL;
-	tmpSinkID = isSink ? self : NO_SINK;
+		isScheduledNetSetupTimeout = false;
+		if (tmpLevel == NO_LEVEL) {
+			setTimer(TOPOLOGY_SETUP_TIMEOUT, netSetupTimeout);
+			isScheduledNetSetupTimeout = true;
+		} else if (currentLevel == NO_LEVEL) {
+			//Broadcast to all nodes of currentLevel-1
+			currentLevel = tmpLevel + 1;
+			currentSinkID = tmpSinkID;
+
+			if (!isConnected) {
+				isConnected = true;
+				sendControlMessage(MPRINGS_CONNECTED_TO_TREE);
+				trace() << "Connected to " << currentSinkID << " at level " << currentLevel;
+				if (!TXBuffer.empty())
+					processBufferedPacket();
+			} else {
+				sendControlMessage(MPRINGS_TREE_LEVEL_UPDATED);
+				trace() << "Reconnected to " << currentSinkID << " at level " << currentLevel;
+			}
+			sendTopologySetupPacket();
+		}
+
+		tmpLevel = isSink ? 0 : NO_LEVEL;
+		tmpSinkID = isSink ? self : NO_SINK;
+	}
 }
 
 void MultipathRingsRouting::processBufferedPacket()
@@ -138,15 +160,6 @@ void MultipathRingsRouting::fromApplicationLayer(cPacket * pkt, const char *dest
 
 void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double rssi, double lqi)
 {
-
-	/* Obtain a pointer to the energy manager module */
-	VirtualEnergyManager* engyMgr =
-		check_and_cast<VirtualEnergyManager*>(getParentModule()->getParentModule()->
-		getSubmodule("ResourceManager")->getSubmodule("EnergySubsystem")->getSubmodule("EnergyManager"));
-	double currentEnergyRatio = engyMgr->getCurrentEnergyRatio();
-
-	trace() << "Current energy ratio: " << currentEnergyRatio;
-	collectOutput("Battery level", "", currentEnergyRatio);
 
 	MultipathRingsRoutingPacket *netPacket = dynamic_cast <MultipathRingsRoutingPacket*>(pkt);
 	if (!netPacket)

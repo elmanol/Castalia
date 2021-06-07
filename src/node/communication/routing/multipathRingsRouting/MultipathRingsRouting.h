@@ -28,13 +28,15 @@ using namespace std;
 enum MultipathRingsRoutingTimers {
 	TOPOLOGY_SETUP_TIMEOUT = 1,
 	TOPOLOGY_MSG = 2,
+	COLLECT_BATTERY = 3
 };
 
 class MultipathRingsRouting: public VirtualRouting {
  private:
 	int mpathRingsSetupFrameOverhead;	// in bytes
 	double netSetupTimeout;
-
+	int collectBatterySN;
+	double collectBatteryTimer;
 	// multipathRingsRouting-related member variables
 	int currentSequenceNumber;
 	int currentSinkID;
