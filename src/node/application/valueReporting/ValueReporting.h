@@ -39,7 +39,7 @@ class ValueReporting: public VirtualApplication {
 	//simtime_t packetLatency;
 	//simtime_t packetLatencySum;
 	int packetsReceivedSum;
-	map<double,int> packetLatency;
+	map<long, double> packetLatency;
 	map<long,int> packetsReceived;
 	map<long,int> bytesReceived;
 	map<long,int> packetsSent;

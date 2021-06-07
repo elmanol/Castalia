@@ -38,6 +38,8 @@ void MultipathRingsRouting::startup()
 		setTimer(TOPOLOGY_MSG, netSetupTimeout);
 	}
 	declareOutput("Propagated_data");
+	declareOutput("Battery level");
+
 }
 
 void MultipathRingsRouting::sendTopologySetupPacket()
@@ -141,9 +143,10 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 	VirtualEnergyManager* engyMgr =
 		check_and_cast<VirtualEnergyManager*>(getParentModule()->getParentModule()->
 		getSubmodule("ResourceManager")->getSubmodule("EnergySubsystem")->getSubmodule("EnergyManager"));
-		double currentEnergyRatio = engyMgr->getCurrentEnergyRatio();
+	double currentEnergyRatio = engyMgr->getCurrentEnergyRatio();
 
-		trace() << "Current energy ratio: " << currentEnergyRatio;
+	trace() << "Current energy ratio: " << currentEnergyRatio;
+	collectOutput("Battery level", "", currentEnergyRatio);
 
 	MultipathRingsRoutingPacket *netPacket = dynamic_cast <MultipathRingsRoutingPacket*>(pkt);
 	if (!netPacket)

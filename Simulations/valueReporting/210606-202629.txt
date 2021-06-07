@@ -1,11 +1,11 @@
 Castalia| what:[General,harvesting] (1)
-Castalia| when:2021-06-06 19:16
+Castalia| when:2021-06-06 20:26
 Castalia| repeat:0 label:General
 Castalia|		module:SN.Simulation
 Castalia|			simple output name:Execution time, seconds
-Castalia|				0.051
+Castalia|				0.079
 Castalia|			simple output name:Execution ratio (simtime/realtime)
-Castalia|				4706.40457523
+Castalia|				3038.31181439
 Castalia|	module:SN.node[0].ResourceManager.EnergySubsystem.EnergyStorage.Batteries[0]
 Castalia|		simple output name:Device Energy
 Castalia|			0 Charged
@@ -53,9 +53,17 @@ Castalia|			1 Received from App
 Castalia|			715 received data pkts
 Castalia|			1 sent data pkts
 Castalia|	module:SN.node[0].Communication.Routing
+Castalia|		simple output name:Battery level
+Castalia|			714.845 
 Castalia|		simple output name:Propagated_data
 Castalia|			713 
 Castalia|	module:SN.node[0].Application
+Castalia|		 index:1 simple output name:Avg latency
+Castalia|			6.67227e-06 total
+Castalia|		 index:2 simple output name:Avg latency
+Castalia|			6.67227e-06 total
+Castalia|		 index:3 simple output name:Avg latency
+Castalia|			6.67227e-06 total
 Castalia|		 index:1 simple output name:Packets loss rate
 Castalia|			0 total
 Castalia|		 index:2 simple output name:Packets loss rate
@@ -114,6 +122,8 @@ Castalia|			239 Received from App
 Castalia|			477 received data pkts
 Castalia|			239 sent data pkts
 Castalia|	module:SN.node[1].Communication.Routing
+Castalia|		simple output name:Battery level
+Castalia|			476.897 
 Castalia|		simple output name:Propagated_data
 Castalia|			475 
 Castalia|	module:SN.node[1].Application
@@ -166,6 +176,8 @@ Castalia|			239 Received from App
 Castalia|			476 received data pkts
 Castalia|			239 sent data pkts
 Castalia|	module:SN.node[2].Communication.Routing
+Castalia|		simple output name:Battery level
+Castalia|			475.897 
 Castalia|		simple output name:Propagated_data
 Castalia|			475 
 Castalia|	module:SN.node[2].Application
@@ -219,6 +231,8 @@ Castalia|			239 Received from App
 Castalia|			477 received data pkts
 Castalia|			239 sent data pkts
 Castalia|	module:SN.node[3].Communication.Routing
+Castalia|		simple output name:Battery level
+Castalia|			476.896 
 Castalia|		simple output name:Propagated_data
 Castalia|			475 
 Castalia|	module:SN.node[3].Application
@@ -227,9 +241,9 @@ Castalia|			238
 Castalia| repeat:0 label:harvesting
 Castalia|		module:SN.Simulation
 Castalia|			simple output name:Execution time, seconds
-Castalia|				0.05
+Castalia|				0.058
 Castalia|			simple output name:Execution ratio (simtime/realtime)
-Castalia|				4800.0
+Castalia|				4137.93103448
 Castalia|	module:SN.node[0].ResourceManager.EnergySubsystem.EnergyStorage.Batteries[0]
 Castalia|		simple output name:Device Energy
 Castalia|			0 Charged
@@ -275,9 +289,17 @@ Castalia|			1 Received from App
 Castalia|			715 received data pkts
 Castalia|			1 sent data pkts
 Castalia|	module:SN.node[0].Communication.Routing
+Castalia|		simple output name:Battery level
+Castalia|			714.844 
 Castalia|		simple output name:Propagated_data
 Castalia|			713 
 Castalia|	module:SN.node[0].Application
+Castalia|		 index:1 simple output name:Avg latency
+Castalia|			6.67227e-06 total
+Castalia|		 index:2 simple output name:Avg latency
+Castalia|			6.67227e-06 total
+Castalia|		 index:3 simple output name:Avg latency
+Castalia|			6.67227e-06 total
 Castalia|		 index:1 simple output name:Packets loss rate
 Castalia|			0 total
 Castalia|		 index:2 simple output name:Packets loss rate
@@ -334,6 +356,8 @@ Castalia|			239 Received from App
 Castalia|			477 received data pkts
 Castalia|			239 sent data pkts
 Castalia|	module:SN.node[1].Communication.Routing
+Castalia|		simple output name:Battery level
+Castalia|			476.897 
 Castalia|		simple output name:Propagated_data
 Castalia|			475 
 Castalia|	module:SN.node[1].Application
@@ -384,6 +408,8 @@ Castalia|			239 Received from App
 Castalia|			476 received data pkts
 Castalia|			239 sent data pkts
 Castalia|	module:SN.node[2].Communication.Routing
+Castalia|		simple output name:Battery level
+Castalia|			475.897 
 Castalia|		simple output name:Propagated_data
 Castalia|			475 
 Castalia|	module:SN.node[2].Application
@@ -435,6 +461,8 @@ Castalia|			239 Received from App
 Castalia|			477 received data pkts
 Castalia|			239 sent data pkts
 Castalia|	module:SN.node[3].Communication.Routing
+Castalia|		simple output name:Battery level
+Castalia|			476.896 
 Castalia|		simple output name:Propagated_data
 Castalia|			475 
 Castalia|	module:SN.node[3].Application

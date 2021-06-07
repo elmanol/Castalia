@@ -58,8 +58,6 @@ void ValueReporting::fromNetworkLayer(ApplicationPacket * genericPacket,
 		simtime_t timeDifference = simTime() - rcvPacket->getCreationTime();
 		packetLatency[sourceId] = timeDifference.dbl();
  		trace() << "packetLatency[sourceId]1: " << packetLatency[sourceId];
- 		trace() << "packetLatency[sourceId]2: " << timeDifference.dbl();
-
  		packetsReceived[sourceId]++;
 		packetsReceivedSum++;
 	}
@@ -109,7 +107,7 @@ void ValueReporting::finishSpecific() {
 	
 	declareOutput("Packets reception rate");
 	declareOutput("Packets loss rate");
-	declareOutput("lAvg atency");
+	declareOutput("Avg latency");
 
 	if (isSink) {
 
