@@ -26,6 +26,8 @@ class ValueReporting: public VirtualApplication {
  private:
 	double maxSampleInterval;
 	double minSampleInterval;
+	double firstSampleInterval;
+
 
 	int routingLevel;
 	double lastSensedValue;

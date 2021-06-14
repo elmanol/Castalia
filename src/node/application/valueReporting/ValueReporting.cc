@@ -18,6 +18,8 @@ void ValueReporting::startup()
 {
 	maxSampleInterval = ((double)par("maxSampleInterval")) / 1000.0;
 	minSampleInterval = ((double)par("minSampleInterval")) / 1000.0;
+	firstSampleInterval = ((double)par("firstSampleInterval")) / 1000.0;
+
 	currSentSampleSN = 0;
 	declareOutput("Packets sensed per node");
 	float locX = mobilityModule->getLocation().x;
@@ -97,7 +99,7 @@ void ValueReporting::handleNetworkControlMessage(cMessage * msg){
         trace() << "I am the sink. I don't send packets";
 
     } else {
-        setTimer(REQUEST_SAMPLE, minSampleInterval);
+        setTimer(REQUEST_SAMPLE, firstSampleInterval);
     }
 
 }
