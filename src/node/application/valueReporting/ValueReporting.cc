@@ -20,10 +20,9 @@ void ValueReporting::startup()
 	minSampleInterval = ((double)par("minSampleInterval")) / 1000.0;
 	currSentSampleSN = 0;
 	declareOutput("Packets sensed per node");
-	int locX = mobilityModule->getLocation().x;
-	int locY = mobilityModule->getLocation().y;
-	trace() << "X: "<<locX;
-	trace() << "Y: "<<locY;
+	float locX = mobilityModule->getLocation().x;
+	float locY = mobilityModule->getLocation().y;
+	trace() <<locX << ", "<<locY;
 	numNodes = getParentModule()->getParentModule()->par("numNodes");
 	packetsSent.clear();
 	packetsReceived.clear();
@@ -56,8 +55,8 @@ void ValueReporting::fromNetworkLayer(ApplicationPacket * genericPacket,
 	if (isSink){
 		trace() << "Sink received from: " << theData.nodeID << " \tvalue=" << rcvPacket->getData();
 		simtime_t timeDifference = simTime() - rcvPacket->getCreationTime();
-		packetLatency[sourceId] = timeDifference.dbl();
- 		trace() << "packetLatency[sourceId]1: " << packetLatency[sourceId];
+		packetLatency[sourceId] += timeDifference.dbl();
+ 		// trace() << "packetLatency[sourceId]1: " << packetLatency[sourceId];
  		packetsReceived[sourceId]++;
 		packetsReceivedSum++;
 	}
@@ -72,7 +71,7 @@ void ValueReporting::handleSensorReading(SensorReadingMessage * rcvReading)
 	double sensValue = rcvReading->getSensedValue();
 
 	// schedule the TX of the value
-	trace() << "Sensed = " << sensValue;
+	// trace() << "Sensed = " << sensValue;
 
 	ValueReportData tmpData;
 	tmpData.nodeID = (unsigned short)self;

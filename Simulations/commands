@@ -1,3 +1,5 @@
 CastaliaResults -i 210606-174535.txt -s energy
 CastaliaResults -i 210606-174535.txt -s packets
 CastaliaResults -i 210606-174535.txt -s "packet break"
+
+CastaliaResults -i 210611-135450.txt -s 'Energy Breakdown' --filter-column="Harvested" | CastaliaPlot -o energy.ps

@@ -222,6 +222,8 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 						toApplicationLayer(decapsulatePacket(pkt));
 					else
 						trace() << "Discarding duplicate packet from node " << src;
+				}else{
+					trace() << "Discarding packet";
 				}
 			}
 			trace()<<"Self net address: "<<SELF_NETWORK_ADDRESS<<", MAC Adress: "<<macAddress<<" "<<"MPRINGS_DATA_PACKET from: "<<netPacket->getSource();
