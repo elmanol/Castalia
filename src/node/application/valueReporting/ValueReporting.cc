@@ -18,6 +18,7 @@ void ValueReporting::startup()
 {
 	maxSampleInterval = ((double)par("maxSampleInterval")) / 1000.0;
 	minSampleInterval = ((double)par("minSampleInterval")) / 1000.0;
+	firstSampleInterval = ((double)par("firstSampleInterval")) / 1000.0;
 	currSentSampleSN = 0;
 	declareOutput("Packets sensed per node");
 	int locX = mobilityModule->getLocation().x;
@@ -56,7 +57,7 @@ void ValueReporting::fromNetworkLayer(ApplicationPacket * genericPacket,
 	if (isSink){
 		trace() << "Sink received from: " << theData.nodeID << " \tvalue=" << rcvPacket->getData();
 		simtime_t timeDifference = simTime() - rcvPacket->getCreationTime();
-		packetLatency[sourceId] = timeDifference.dbl();
+		packetLatency[sourceId] += timeDifference.dbl();
  		trace() << "packetLatency[sourceId]1: " << packetLatency[sourceId];
  		packetsReceived[sourceId]++;
 		packetsReceivedSum++;
@@ -98,7 +99,7 @@ void ValueReporting::handleNetworkControlMessage(cMessage * msg){
         trace() << "I am the sink. I don't send packets";
 
     } else {
-        setTimer(REQUEST_SAMPLE, minSampleInterval);
+        setTimer(REQUEST_SAMPLE, firstSampleInterval);
     }
 
 }
