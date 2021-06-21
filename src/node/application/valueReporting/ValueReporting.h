@@ -20,6 +20,7 @@ using namespace std;
 
 enum ValueReportingTimers {
 	REQUEST_SAMPLE = 1,
+	METRICS = 2,
 };
 
 class ValueReporting: public VirtualApplication {
@@ -27,7 +28,8 @@ class ValueReporting: public VirtualApplication {
 	double maxSampleInterval;
 	double minSampleInterval;
 	double firstSampleInterval;
-
+	double metricsInterval;
+	int metricsSN;
 	int routingLevel;
 	double lastSensedValue;
 	int currSentSampleSN;

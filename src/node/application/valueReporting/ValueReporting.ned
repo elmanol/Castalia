@@ -24,6 +24,7 @@ simple ValueReporting like node.application.iApplication {
 	int constantDataPayload = default (12);	// in bytes
 	int maxSampleInterval = default (60000);// in msec
 	int minSampleInterval = default (1000); // in msec
+	int metricsInterval = default (3600000); // in msec
 	int firstSampleInterval = default (5000); // in msec
 	bool isSink = default (false);
 	string recipient = default ("0");	// Destination for packets received in this node. 

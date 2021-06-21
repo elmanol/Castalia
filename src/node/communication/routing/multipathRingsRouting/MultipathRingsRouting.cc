@@ -83,7 +83,7 @@ void MultipathRingsRouting::timerFiredCallback(int index)
 		double currentEnergyRatio = engyMgr->getCurrentEnergyRatio();
 		trace() << "Current energy ratio: " << currentEnergyRatio;
 		collectBatterySN++;
-		collectOutput("Battery level", collectBatterySN*collectBatteryTimer, "TimeOverBattery", currentEnergyRatio);
+		collectOutput("Battery level", collectBatterySN*collectBatteryTimer, "BatteryOverTime", currentEnergyRatio);
 		setTimer(COLLECT_BATTERY, collectBatteryTimer);
 
 	}else{
