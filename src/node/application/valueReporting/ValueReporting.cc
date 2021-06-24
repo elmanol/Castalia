@@ -16,17 +16,20 @@ Define_Module(ValueReporting);
 
 void ValueReporting::startup()
 {
-	maxSampleInterval = ((double)par("maxSampleInterval")) / 1000.0;
-	minSampleInterval = ((double)par("minSampleInterval")) / 1000.0;
-	firstSampleInterval = ((double)par("firstSampleInterval")) / 1000.0;
-	metricsInterval = ((double)par("metricsInterval")) / 1000.0;
+	maxSampleInterval = par("maxSampleInterval");
+	minSampleInterval = par("minSampleInterval");
+	firstSampleInterval = par("firstSampleInterval");
+	metricsInterval = par("metricsInterval");
 	currSentSampleSN = 0;
+	packetsSentSum = 0;
+	packetsReceivedSum =0;
 	metricsSN=0;
+	ssum=0;
+	rsum=0;
 	declareOutput("Packets sensed per node");
 	int locX = mobilityModule->getLocation().x;
 	int locY = mobilityModule->getLocation().y;
-	trace() << "X: "<<locX;
-	trace() << "Y: "<<locY;
+	trace() << locX<<", "<<locY;
 	numNodes = getParentModule()->getParentModule()->par("numNodes");
 	packetsSent.clear();
 	packetsReceived.clear();
@@ -35,6 +38,13 @@ void ValueReporting::startup()
 	declareOutput("Packets reception rate");
 	declareOutput("Packets loss rate");
 	declareOutput("Avg latency");
+	declareOutput("Packets sent");
+	declareOutput("Packets sent sum");
+	declareOutput("Packets received");
+	declareOutput("Packets Rate");
+	declareOutput("Simulation duration");
+	
+
 	if (isSink) {
 	  setTimer(METRICS, metricsInterval);
 	}
@@ -52,21 +62,24 @@ void ValueReporting::timerFiredCallback(int index)
 			break;
 		}
 		case METRICS:{
+
 			metricsSN++;
 			setTimer(METRICS, metricsInterval);
 			long bytesDelivered = 0;
 			cTopology *topo;	// temp variable to access packets received by other nodes
 			topo = new cTopology("topo");
 			topo->extractByNedTypeName(cStringTokenizer("node.Node").asVector());
-			double latency=0;
+			float latency=0;
 			float rate=0;
 			for (int i = 0; i < numNodes; i++) {
 				ValueReporting *appModule = dynamic_cast<ValueReporting*>(topo->getNode(i)->getModule()->getSubmodule("Application"));
 				if (appModule) {
 					int packetsSent = appModule->getPacketsSent(self);
+					packetsSentSum += packetsSent;
 					if (packetsSent > 0) { // this node sent us some packets
-						latency += packetLatency[i]/packetsSent;
+						latency += (float)packetLatency[i]/packetsSent;
 						rate += (float)packetsReceived[i]/packetsSent;
+						
 					}
 
 					bytesDelivered += appModule->getBytesReceived(self);
@@ -74,11 +87,21 @@ void ValueReporting::timerFiredCallback(int index)
 				}
 				
 			}		
+
 			collectOutput("Avg latency", metricsSN, "total", latency/numNodes);
 			collectOutput("Packets reception rate", metricsSN, "total", rate/numNodes);
 			collectOutput("Packets loss rate", metricsSN, "total", 1-rate/numNodes);
-			delete(topo);
+			if (packetsSentSum>0){
+			  collectOutput("Packets Rate", metricsSN, "total", (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum));
+			}
+			collectOutput("Packets sent sum", metricsSN, "total", (packetsSentSum));
+			collectOutput("Packets sent", metricsSN, "total", (packetsSentSum-ssum));
+			collectOutput("Packets received", metricsSN, "total", (packetsReceivedSum-rsum));
 			
+			rsum = packetsReceivedSum;
+			ssum = packetsSentSum;
+			
+			delete(topo);
 			
 			break;
 		}
@@ -147,9 +170,7 @@ void ValueReporting::finishSpecific() {
 
 	if (isSink) {
 
-
-		
-
+		collectOutput("Simulation duration","",simTime().dbl());
 		// if (packet_rate > 0 && bytesDelivered > 0) {
 		// 	double energy = (enMgrModule->getTotEnergySupplied() * 1000000000)/(bytesDelivered * 8);	//in nanojoules/bit
 		// 	declareOutput("Energy nJ/bit");

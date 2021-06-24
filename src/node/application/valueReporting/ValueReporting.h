@@ -38,10 +38,12 @@ class ValueReporting: public VirtualApplication {
 	bool sentOnce;
 	//variables below are used to determine the packet delivery rates.	
 	int numNodes;
-	int packetsSentSum;
 	//simtime_t packetLatency;
 	//simtime_t packetLatencySum;
 	int packetsReceivedSum;
+	int packetsSentSum;
+	int ssum;
+	int rsum;
 	map<long, double> packetLatency;
 	map<long,int> packetsReceived;
 	map<long,int> bytesReceived;
