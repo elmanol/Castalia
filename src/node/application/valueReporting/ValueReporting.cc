@@ -16,6 +16,8 @@ Define_Module(ValueReporting);
 
 void ValueReporting::startup()
 {
+
+      if (!hasDied){  
 	maxSampleInterval = par("maxSampleInterval");
 	minSampleInterval = par("minSampleInterval");
 	firstSampleInterval = par("firstSampleInterval");
@@ -39,7 +41,7 @@ void ValueReporting::startup()
 	declareOutput("Packets loss rate");
 	declareOutput("Avg latency");
 	declareOutput("Packets sent");
-	declareOutput("Packets sent sum");
+	//declareOutput("Packets sent sum");
 	declareOutput("Packets received");
 	declareOutput("Packets Rate");
 	declareOutput("Simulation duration");
@@ -48,13 +50,12 @@ void ValueReporting::startup()
 	if (isSink) {
 	  setTimer(METRICS, metricsInterval);
 	}
-
+     }
+     hasDied = true;
 }
 
 void ValueReporting::timerFiredCallback(int index)
 {
-	trace() << "timer fired";
-
 	switch (index) {
 		case REQUEST_SAMPLE:{
 			requestSensorReading();
@@ -62,23 +63,23 @@ void ValueReporting::timerFiredCallback(int index)
 			break;
 		}
 		case METRICS:{
-
+			trace() << "test metrics";
 			metricsSN++;
 			setTimer(METRICS, metricsInterval);
 			long bytesDelivered = 0;
 			cTopology *topo;	// temp variable to access packets received by other nodes
 			topo = new cTopology("topo");
 			topo->extractByNedTypeName(cStringTokenizer("node.Node").asVector());
-			float latency=0;
-			float rate=0;
+			float total_latency=0;
+			float total_received=0;
 			for (int i = 0; i < numNodes; i++) {
 				ValueReporting *appModule = dynamic_cast<ValueReporting*>(topo->getNode(i)->getModule()->getSubmodule("Application"));
 				if (appModule) {
 					int packetsSent = appModule->getPacketsSent(self);
 					packetsSentSum += packetsSent;
 					if (packetsSent > 0) { // this node sent us some packets
-						latency += (float)packetLatency[i]/packetsSent;
-						rate += (float)packetsReceived[i]/packetsSent;
+						total_latency += (float)packetLatency[i];
+						total_received += (float)packetsReceived[i];
 						
 					}
 
@@ -88,9 +89,9 @@ void ValueReporting::timerFiredCallback(int index)
 				
 			}		
 
-			collectOutput("Avg latency", metricsSN, "total", latency/numNodes);
-			collectOutput("Packets reception rate", metricsSN, "total", rate/numNodes);
-			collectOutput("Packets loss rate", metricsSN, "total", 1-rate/numNodes);
+			collectOutput("Avg latency", metricsSN, "total", total_latency/packetsSentSum);
+			collectOutput("Packets reception rate", metricsSN, "total", total_received/packetsSentSum);
+			collectOutput("Packets loss rate", metricsSN, "total", 1-total_received/packetsSentSum);
 			if (packetsSentSum>0){
 			  collectOutput("Packets Rate", metricsSN, "total", (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum));
 			}
@@ -114,7 +115,7 @@ void ValueReporting::fromNetworkLayer(ApplicationPacket * genericPacket,
 	int sourceId = atoi(source);
 	ValueReportingDataPacket *rcvPacket = check_and_cast<ValueReportingDataPacket*>(genericPacket);
 	ValueReportData theData = rcvPacket->getExtraData();
-
+	collectOutput("Simulation duration","",simTime().dbl());
 	if (isSink){
 		trace() << "Sink received from: " << theData.nodeID << " \tvalue=" << rcvPacket->getData();
 		simtime_t timeDifference = simTime() - rcvPacket->getCreationTime();
@@ -150,6 +151,7 @@ void ValueReporting::handleSensorReading(SensorReadingMessage * rcvReading)
 
 	toNetworkLayer(packet2Net, SINK_NETWORK_ADDRESS);
 	packetsSent[atoi(SINK_NETWORK_ADDRESS)]++;
+	collectOutput("Simulation duration","",simTime().dbl());
 
     trace() << "Sent data packet to network layer";
 }
@@ -170,11 +172,48 @@ void ValueReporting::finishSpecific() {
 
 	if (isSink) {
 
-		collectOutput("Simulation duration","",simTime().dbl());
 		// if (packet_rate > 0 && bytesDelivered > 0) {
 		// 	double energy = (enMgrModule->getTotEnergySupplied() * 1000000000)/(bytesDelivered * 8);	//in nanojoules/bit
 		// 	declareOutput("Energy nJ/bit");
 		// 	collectOutput("Energy nJ/bit","",energy);
 		// }
+		metricsSN++;
+		long bytesDelivered = 0;
+		cTopology *topo;	// temp variable to access packets received by other nodes
+		topo = new cTopology("topo");
+		topo->extractByNedTypeName(cStringTokenizer("node.Node").asVector());
+		float total_latency=0;
+		float total_received=0;
+		for (int i = 0; i < numNodes; i++) {
+			ValueReporting *appModule = dynamic_cast<ValueReporting*>(topo->getNode(i)->getModule()->getSubmodule("Application"));
+			if (appModule) {
+				int packetsSent = appModule->getPacketsSent(self);
+				packetsSentSum += packetsSent;
+				if (packetsSent > 0) { // this node sent us some packets
+					total_latency += (float)packetLatency[i];
+					total_received += (float)packetsReceived[i];
+					
+				}
+
+				bytesDelivered += appModule->getBytesReceived(self);
+				
+			}
+			
+		}		
+
+		collectOutput("Avg latency", metricsSN, "total", total_latency/packetsSentSum);
+		collectOutput("Packets reception rate", metricsSN, "total", total_received/packetsSentSum);
+		collectOutput("Packets loss rate", metricsSN, "total", 1-total_received/packetsSentSum);
+		if (packetsSentSum>0){
+		  collectOutput("Packets Rate", metricsSN, "total", (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum));
+		}
+		collectOutput("Packets sent sum", metricsSN, "total", (packetsSentSum));
+		collectOutput("Packets sent", metricsSN, "total", (packetsSentSum-ssum));
+		collectOutput("Packets received", metricsSN, "total", (packetsReceivedSum-rsum));
+		
+		rsum = packetsReceivedSum;
+		ssum = packetsSentSum;
+		
+		delete(topo);
 	}
 }

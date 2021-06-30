@@ -36,6 +36,7 @@ class ValueReporting: public VirtualApplication {
 
 	double randomBackoffIntervalFraction;
 	bool sentOnce;
+	bool hasDied=false;
 	//variables below are used to determine the packet delivery rates.	
 	int numNodes;
 	//simtime_t packetLatency;
