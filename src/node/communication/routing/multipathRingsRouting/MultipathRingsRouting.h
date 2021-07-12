@@ -38,6 +38,7 @@ class MultipathRingsRouting: public VirtualRouting {
 	int collectBatterySN;
 	double collectBatteryTimer;
 	// multipathRingsRouting-related member variables
+	bool hasDied=false;
 	int currentSequenceNumber;
 	int currentSinkID;
 	int currentLevel;

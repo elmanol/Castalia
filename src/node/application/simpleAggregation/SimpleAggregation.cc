@@ -64,38 +64,38 @@ void SimpleAggregation::handleSensorReading(SensorReadingMessage * rcvReading)
 
 void SimpleAggregation::handleNeworkControlMessage(cMessage * msg)
 {
-
- //    switch(msg->getKind()) {
+/*
+    switch(msg->getKind()) {
     
-	// case TREE_LEVEL_UPDATED: {
-	//     // this message notifies the application of routing state (level)
-	//     // for certain routing protocols.
-	//     Network_ControlMessage *levelMsg = check_and_cast<Network_ControlMessage *>(msg);
-	//     routingLevel = levelMsg->getLevel();
+	case TREE_LEVEL_UPDATED: {
+	    // this message notifies the application of routing state (level)
+	    // for certain routing protocols.
+	    Network_ControlMessage *levelMsg = check_and_cast<Network_ControlMessage *>(msg);
+	    routingLevel = levelMsg->getLevel();
 
-	//     waitingTimeForLowerLevelData = sampleInterval/pow((double)2,routingLevel);
-	//     trace() << "Routing level " << routingLevel;
+	    waitingTimeForLowerLevelData = sampleInterval/pow((double)2,routingLevel);
+	    trace() << "Routing level " << routingLevel;
 	
-	//     setTimer(SEND_AGGREGATED_VALUE,waitingTimeForLowerLevelData);
-	//     break;
-	// }
+	    setTimer(SEND_AGGREGATED_VALUE,waitingTimeForLowerLevelData);
+	    break;
+	}
 
-	// case CONNECTED_TO_TREE: {
-	//     Network_ControlMessage *connectedMsg = check_and_cast<Network_ControlMessage *>(msg);
+	case CONNECTED_TO_TREE: {
+	    Network_ControlMessage *connectedMsg = check_and_cast<Network_ControlMessage *>(msg);
 
-	//     int treeLevel = connectedMsg->getLevel();
-	//     string parents;
-	//     parents.assign(connectedMsg->getParents());
+	    int treeLevel = connectedMsg->getLevel();
+	    string parents;
+	    parents.assign(connectedMsg->getParents());
 
-	//     trace() << "Tree level " << treeLevel;
+	    trace() << "Tree level " << treeLevel;
 
-	//     routingLevel = treeLevel;
+	    routingLevel = treeLevel;
 
-	//     waitingTimeForLowerLevelData = sampleInterval/pow((double)2,routingLevel);
-	//     setTimer(SEND_AGGREGATED_VALUE,waitingTimeForLowerLevelData);
-	//     break;
-	// }
- //    }
-
+	    waitingTimeForLowerLevelData = sampleInterval/pow((double)2,routingLevel);
+	    setTimer(SEND_AGGREGATED_VALUE,waitingTimeForLowerLevelData);
+	    break;
+	}
+    }
+*/
 }
 

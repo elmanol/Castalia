@@ -26,7 +26,6 @@ Define_Module(ThroughputTest);
 
 void ThroughputTest::startup()
 {
-	std::cout  << "Cout" << std::endl;
 	packet_rate = par("packet_rate");
 	recipientAddress = par("nextRecipient").stringValue();
 	recipientId = atoi(recipientAddress.c_str());

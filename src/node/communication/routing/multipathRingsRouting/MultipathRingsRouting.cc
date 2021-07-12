@@ -17,6 +17,8 @@ Define_Module(MultipathRingsRouting);
 
 void MultipathRingsRouting::startup()
 {
+
+      if (!hasDied){  
 	collectBatterySN =0;
 	netSetupTimeout = (double)par("netSetupTimeout") / 1000.0;
 	collectBatteryTimer = par("collectBatteryTimer");
@@ -43,7 +45,8 @@ void MultipathRingsRouting::startup()
 	}
 	declareOutput("Propagated_data");
 	declareOutput("Battery level");
-
+     }
+     hasDied = true;
 }
 
 void MultipathRingsRouting::sendTopologySetupPacket()
