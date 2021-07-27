@@ -46,9 +46,12 @@ class EAmultipathRingsRouting: public VirtualRouting {
 	int currentLevel;
 	int tmpSinkID;
 	int tmpLevel;
+	int rssiThreshold;
+	
 	bool isSink;		//is a .ned file parameter of the Application module
 	bool isConnected;	//attached under a parent node
 	bool isScheduledNetSetupTimeout;
+	
 	struct neighbour{
 		double EnergyLevel;
 		int RingLevel;
@@ -72,6 +75,8 @@ class EAmultipathRingsRouting: public VirtualRouting {
 
 	void timerFiredCallback(int);
 	void processBufferedPacket();
+	
+	int findNextHop();
 };
 
 #endif				//EAmultipathRingsROUTINGMODULE

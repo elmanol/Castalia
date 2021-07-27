@@ -23,7 +23,7 @@ simple EAmultipathRingsRouting like node.communication.routing.iRouting {
 	int netSetupTimeout = default (500);					// msec
 	int collectBatteryTimer = default (1800);					// sec
 	int sendEnergyTimer = default (20);					// sec
-
+	int rssiThreshold = default(-90);
 
  gates:
 	output toCommunicationModule;

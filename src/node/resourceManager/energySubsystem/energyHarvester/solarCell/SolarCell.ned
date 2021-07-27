@@ -21,14 +21,19 @@ simple SolarCell like node.resourceManager.energySubsystem.energyHarvester.iEner
 	string sourceType = "Solar";
 
 	// max harvesting power (hardware limit)
-	double maxHarvestingPower = default(-1);	// mW
-
+	//double maxHarvestingPower = default(18);	// in mW IXOLAR XOB17-04x3
+	//double maxHarvestingPower = default(24.5);	// in mW IXOLAR KXOB25-12X1F-TR
+	double maxHarvestingPower = default(98);	// in mW ANYSOLAR Ltd SM111K04L
 	// solar cell size (in cm^2)
-	double size = default(1.54);			// IXOLAR XOB17-04x3
+	// double size = default(1.54);			// IXOLAR XOB17-04x3
+	// double size = default(1.54);			// IXOLAR KXOB25-12X1F-TR
+	double size = default(6.02);			// ANYSOLAR Ltd SM111K04L
 
 	// solar cell efficiency -- depends on solar cell hardware
-	double cellEfficiency = default(0.17);	// IXOLAR XOB17-04x3
-	
+	//double cellEfficiency = default(0.17);	// IXOLAR XOB17-04x3
+	//double cellEfficiency = default(0.25);	// IXOLAR KXOB25-12X1F-TR
+	double cellEfficiency = default(0.25);	// ANYSOLAR Ltd SM111K04L
+		
 	// time-varying harvesting efficiency -- depends on shadows, dust, ecc
 	string efficiencyFile = default("");
 

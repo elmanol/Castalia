@@ -20,6 +20,7 @@ void EAmultipathRingsRouting::startup()
 
       if (!hasDied){  
 	collectBatterySN =0;
+	rssiThreshold = par("rssiThreshold");
 	netSetupTimeout = (double)par("netSetupTimeout") / 1000.0;
 	collectBatteryTimer = par("collectBatteryTimer");
 	sendEnergyTimer = par("sendEnergyTimer");
@@ -96,17 +97,28 @@ void EAmultipathRingsRouting::timerFiredCallback(int index)
 			check_and_cast<VirtualEnergyManager*>(getParentModule()->getParentModule()->
 			getSubmodule("ResourceManager")->getSubmodule("EnergySubsystem")->getSubmodule("EnergyManager"));
 
-		double currentHarvestingRate = engyMgr2->getCurrentHarvestingPower();
+		double currentHarvestingPower = engyMgr2->getCurrentHarvestingPower();
 		double currentEnergyRatio = engyMgr2->getCurrentEnergyRatio();
 		double MaxHarvestingPower = engyMgr2->getMaxHarvestingPower();
+		double EnergyLevel;
+		double HarvestingRate=0;
 		
-		trace()<<"Harvesting Rate: "<<currentHarvestingRate << ", Remaining Energy: "<<currentEnergyRatio << ", MaxHarvestingPower: "<< MaxHarvestingPower;
+		if (MaxHarvestingPower > 0){
+		
+			HarvestingRate = currentHarvestingPower/MaxHarvestingPower;
+			EnergyLevel = currentEnergyRatio+HarvestingRate;
+			
+		}else{
+			EnergyLevel = currentEnergyRatio;
+		}
+		
+		trace()<<"Harvesting Rate: "<< HarvestingRate << ", Remaining Energy: "<<currentEnergyRatio << ", MaxHarvestingPower: "<< MaxHarvestingPower;
 		
 		EAmultipathRingsRoutingPacket *energyPacket =
 		    new EAmultipathRingsRoutingPacket("Multipath rings energy packet", NETWORK_LAYER_PACKET);
 		energyPacket->setEamultipathRingsRoutingPacketKind(MPRINGS_ENERGY_PACKET);
 		energyPacket->setSource(SELF_NETWORK_ADDRESS);
-		energyPacket->setEnergyStatus(currentEnergyRatio+currentHarvestingRate);
+		energyPacket->setEnergyStatus(EnergyLevel);
 		toMacLayer(energyPacket, BROADCAST_MAC_ADDRESS);
 		
 
@@ -161,6 +173,9 @@ void EAmultipathRingsRouting::fromApplicationLayer(cPacket * pkt, const char *de
 	netPacket->setSenderLevel(currentLevel);
 	encapsulatePacket(netPacket, pkt);
 
+	int nextHop = findNextHop();
+	trace() << "Destination for "<< self << " is: " << nextHop;
+
 	if (dst.compare(SINK_NETWORK_ADDRESS) == 0 || dst.compare(PARENT_NETWORK_ADDRESS) == 0) {
 		netPacket->setSequenceNumber(currentSequenceNumber);
 		currentSequenceNumber++;
@@ -173,17 +188,17 @@ void EAmultipathRingsRouting::fromApplicationLayer(cPacket * pkt, const char *de
 			//Here we could send a control message to upper layer informing that our buffer is full
 		}
 	} else {		//++++ need to control flooding
-		toMacLayer(netPacket, BROADCAST_MAC_ADDRESS);
+		toMacLayer(netPacket, nextHop);
 	}
 }
 
 void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double rssi, double lqi)
 {
 
-	trace() << "RSSI of packet: "<<rssi;
+	trace() << "RSSI of packet: "<<rssi << " from "<< macAddress;
 	EAmultipathRingsRoutingPacket *netPacket = dynamic_cast <EAmultipathRingsRoutingPacket*>(pkt);
 	string src(netPacket->getSource());
-	if (!netPacket ||(rssi < -80))
+	if (!netPacket)
 		return;
 
 	switch (netPacket->getEamultipathRingsRoutingPacketKind()) {
@@ -191,15 +206,12 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 		case MPRINGS_ENERGY_PACKET:{
 			double energyLevel = netPacket->getEnergyStatus();
 			neighboursMap[src].EnergyLevel = energyLevel;
-			
-			
-			for(map<string,neighbour>::const_iterator it = neighboursMap.begin(); it != neighboursMap.end(); ++it)
-			{
-			    trace() << "Map: Neighbour: "<< it->first <<", Energy: "<< (it->second).EnergyLevel << "\n";
-			}
 			break;
 		}
 		case MPRINGS_TOPOLOGY_SETUP_PACKET:{
+		
+			if (rssi < rssiThreshold)
+				return;
 			neighbour neigh;
 			
 			if (isSink)
@@ -223,19 +235,9 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 		}
 
 		case MPRINGS_DATA_PACKET:{
-			
-			double maxEnergy = -1;
-			int nextHop;
-			for(map<string,neighbour>::const_iterator it = neighboursMap.begin(); it != neighboursMap.end(); ++it)
-			{
-			    trace() << "Map: Neighbour: "<< it->first <<", Energy: "<< (it->second).EnergyLevel << "\n";
-			    double energy = (it->second).EnergyLevel;
-			    if (energy > maxEnergy){
-			    	nextHop = std::stoi(it->first);
-			    	maxEnergy = energy;
-			    }
-			}
 		
+
+			int nextHop = findNextHop();
 		
 			collectOutput("Propagated_data");
 			string dst(netPacket->getDestination());
@@ -276,9 +278,25 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 						trace() << "Discarding duplicate packet from node " << src;
 				}
 			}
-			trace()<<"Self net address: "<<SELF_NETWORK_ADDRESS<<", MAC Adress: "<<macAddress<<" "<<"MPRINGS_DATA_PACKET from: "<<netPacket->getSource();
+			trace()<<"Self net address: "<<SELF_NETWORK_ADDRESS<<", MAC Address: "<<macAddress<<" "<<"MPRINGS_DATA_PACKET from: "<<netPacket->getSource();
 			break;
 		}
 	}
+}
+
+int EAmultipathRingsRouting::findNextHop(){
+	double maxEnergy = -1;
+	int nextHop;
+	for(map<string,neighbour>::const_iterator it = neighboursMap.begin(); it != neighboursMap.end(); ++it)
+	{
+	    trace() << "Map of Neighbours of "<<self<<": "<< it->first <<", Energy: "<< (it->second).EnergyLevel << "\n";
+	    double energy = (it->second).EnergyLevel;
+	    if (energy > maxEnergy){
+	    	nextHop = std::stoi(it->first);
+	    	maxEnergy = energy;
+	    }
+	}
+	
+	return nextHop;
 }
 
