@@ -20,6 +20,8 @@ void ValueReporting::startup()
       if (!hasDied){  
 	maxSampleInterval = par("maxSampleInterval");
 	minSampleInterval = par("minSampleInterval");
+	double r = ((double) rand() / (RAND_MAX)) + 1;
+	minSampleInterval = minSampleInterval + r;
 	firstSampleInterval = par("firstSampleInterval");
 	metricsInterval = par("metricsInterval");
 	currSentSampleSN = 0;

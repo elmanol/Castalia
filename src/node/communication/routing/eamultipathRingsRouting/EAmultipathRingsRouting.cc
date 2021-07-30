@@ -41,7 +41,7 @@ void EAmultipathRingsRouting::startup()
 	currentSequenceNumber = 0;
 
 	setTimer(COLLECT_BATTERY, collectBatteryTimer);
-	setTimer(ENERGY_MSG, sendEnergyTimer);
+	setTimer(ENERGY_MSG, 1);
 	if (isSink){
 		sendTopologySetupPacket();
 	}
@@ -210,10 +210,11 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 		}
 		case MPRINGS_TOPOLOGY_SETUP_PACKET:{
 		
-			if (rssi < rssiThreshold)
-				return;
 			neighbour neigh;
-			
+		
+			//if (rssi < rssiThreshold)
+			//	return;
+
 			if (isSink)
 				break;
 			if (!isScheduledNetSetupTimeout) {
@@ -223,6 +224,7 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 				tmpSinkID = NO_SINK;
 			}
 			if (tmpLevel == NO_LEVEL || tmpLevel > netPacket->getSenderLevel()) {
+			      	
 				tmpLevel = netPacket->getSenderLevel();
 				tmpSinkID = netPacket->getSinkID();
 				neigh.RingLevel = tmpLevel;
