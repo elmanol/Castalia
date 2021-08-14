@@ -20,7 +20,7 @@ void MultipathRingsRouting::startup()
 
       if (!hasDied){  
 	collectBatterySN =0;
-	netSetupTimeout = (double)par("netSetupTimeout") / 1000.0;
+	netSetupTimeout = (double)par("netSetupTimeout");
 	collectBatteryTimer = par("collectBatteryTimer");
 	mpathRingsSetupFrameOverhead = par("mpathRingsSetupFrameOverhead");
 
@@ -232,4 +232,5 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 		}
 	}
 }
+
 

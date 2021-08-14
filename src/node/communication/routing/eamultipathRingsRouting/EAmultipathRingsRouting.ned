@@ -19,11 +19,11 @@ simple EAmultipathRingsRouting like node.communication.routing.iRouting {
 	int netBufferSize = default (32);					// number of messages
 	int netDataFrameOverhead = default (14);			// bytes
 	int mpathRingsSetupFrameOverhead = default (13);	// bytes
-	int startupDelay = default (50);					// 
-	int netSetupTimeout = default (500);					// msec
+	double startupDelay = default (0);					// sec
+	double netSetupTimeout = default (0.5);					// sec
 	int collectBatteryTimer = default (1800);					// sec
-	int sendEnergyTimer = default (20);					// sec
-	int rssiThreshold = default(-90);
+	int sendEnergyTimer = default (120);					// sec
+	int rssiThreshold = default(-120);
 
  gates:
 	output toCommunicationModule;

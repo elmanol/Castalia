@@ -28,13 +28,15 @@ using namespace std;
 enum EAmultipathRingsRoutingTimers {
 	TOPOLOGY_SETUP_TIMEOUT = 1,
 	COLLECT_BATTERY = 2,
-	ENERGY_MSG = 3
+	ENERGY_MSG = 3,
+	TOPOLOGY_MSG = 4
 };
 
 class EAmultipathRingsRouting: public VirtualRouting {
  private:
 	int mpathRingsSetupFrameOverhead;	// in bytes
 	double netSetupTimeout;
+	double startupDelay;
 	int collectBatterySN;
 	double collectBatteryTimer;
 	double sendEnergyTimer;
@@ -55,9 +57,11 @@ class EAmultipathRingsRouting: public VirtualRouting {
 	struct neighbour{
 		double EnergyLevel;
 		int RingLevel;
+		double Rssi;
 		neighbour(){
 			EnergyLevel = 0;
 			RingLevel = 0;
+			Rssi = 0;
 		}
 	};
 

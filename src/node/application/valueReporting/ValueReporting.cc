@@ -39,14 +39,13 @@ void ValueReporting::startup()
 	packetsReceived.clear();
 	bytesReceived.clear();
 	packetLatency.clear();
-	declareOutput("Packets reception rate");
-	declareOutput("Packets loss rate");
-	declareOutput("Avg latency");
-	declareOutput("Packets sent");
-	declareOutput("Packets ssum");
-	declareOutput("Packets packetsSentSum");
-	declareOutput("Packets received");
-	declareOutput("Packets Rate");
+	declareOutput("Packets Reception Rate");
+	declareOutput("Packets Loss Rate");
+	declareOutput("Avg Latency");
+	declareOutput("Packets Sent");
+	declareOutput("Packets Received");
+	//declareOutput("Packets ssum");
+	//declareOutput("Packets packetsSentSum");
 	declareOutput("Simulation duration");
 	
 
@@ -93,18 +92,18 @@ void ValueReporting::timerFiredCallback(int index)
 				
 			}		
 
-			collectOutput("Avg latency", metricsSN, "total", total_latency/packetsSentSum);
-			collectOutput("Packets reception rate", metricsSN, "total", total_received/packetsSentSum);
-			collectOutput("Packets loss rate", metricsSN, "total", 1-total_received/packetsSentSum);
+			collectOutput("Avg Latency", metricsSN, "total", total_latency/packetsSentSum);
+			//collectOutput("Packets Rate", metricsSN, "total", total_received/packetsSentSum);
+			collectOutput("Packets Loss Rate", metricsSN, "total", 1-total_received/packetsSentSum);
 			if (packetsSentSum>0){
-			  collectOutput("Packets Rate", metricsSN, "total", (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum));
+			  collectOutput("Packets Reception Rate", metricsSN, "total", (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum));
 			}else{
-			  collectOutput("Packets Rate", metricsSN, "total", 0);
+			  collectOutput("Packets Reception Rate", metricsSN, "total", 0);
 			}
-			collectOutput("Packets ssum", metricsSN, "total", ssum);
-			collectOutput("Packets sent", metricsSN, "total", (packetsSentSum-ssum));
-			collectOutput("Packets packetsSentSum", metricsSN, "total", packetsSentSum);
-			collectOutput("Packets received", metricsSN, "total", (packetsReceivedSum-rsum));
+			//collectOutput("Packets ssum", metricsSN, "total", ssum);
+			collectOutput("Packets Sent", metricsSN, "total", (packetsSentSum-ssum));
+			//collectOutput("Packets packetsSentSum", metricsSN, "total", packetsSentSum);
+			collectOutput("Packets Received", metricsSN, "total", (packetsReceivedSum-rsum));
 			
 			rsum = packetsReceivedSum;
 			ssum = packetsSentSum;
@@ -144,14 +143,14 @@ void ValueReporting::handleSensorReading(SensorReadingMessage * rcvReading)
 	// schedule the TX of the value
 	trace() << "Sensed = " << sensValue;
 
-	ValueReportData tmpData;
-	tmpData.nodeID = (unsigned short)self;
-	tmpData.locX = mobilityModule->getLocation().x;
-	tmpData.locY = mobilityModule->getLocation().y;
+	//ValueReportData tmpData;
+	//tmpData.nodeID = (unsigned short)self;
+	//tmpData.locX = mobilityModule->getLocation().x;
+	//tmpData.locY = mobilityModule->getLocation().y;
 
 	ValueReportingDataPacket *packet2Net =
 	    new ValueReportingDataPacket("Value reporting pck", APPLICATION_PACKET);
-	packet2Net->setExtraData(tmpData);
+	//packet2Net->setExtraData(tmpData);
 	packet2Net->setData(sensValue);
 	packet2Net->setSequenceNumber(currSentSampleSN);
 	currSentSampleSN++;
@@ -170,7 +169,9 @@ void ValueReporting::handleNetworkControlMessage(cMessage * msg){
         trace() << "I am the sink. I don't send packets";
 
     } else {
+    	//if (self==(unsigned short)34){
         setTimer(REQUEST_SAMPLE, firstSampleInterval);
+        //}
     }
 
 }
@@ -210,18 +211,18 @@ void ValueReporting::finishSpecific() {
 			
 		}		
 		
-		collectOutput("Avg latency", metricsSN, "total", total_latency/packetsSentSum);
-		collectOutput("Packets reception rate", metricsSN, "total", total_received/packetsSentSum);
-		collectOutput("Packets loss rate", metricsSN, "total", 1-total_received/packetsSentSum);
+		collectOutput("Avg Latency", metricsSN, "total", total_latency/packetsSentSum);
+		//collectOutput("Packets Rate", metricsSN, "total", total_received/packetsSentSum);
+		collectOutput("Packets Loss Rate", metricsSN, "total", 1-total_received/packetsSentSum);
 		if (packetsSentSum>0){
-		  collectOutput("Packets Rate", metricsSN, "total", (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum));
+		  collectOutput("Packets Reception Rate", metricsSN, "total", (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum));
 		}else{
-		  collectOutput("Packets Rate", metricsSN, "total", 0);
+		  collectOutput("Packets Reception Rate", metricsSN, "total", 0);
 		}
-		collectOutput("Packets ssum", metricsSN, "total", ssum);
-		collectOutput("Packets packetsSentSum", metricsSN, "total", packetsSentSum);
-		collectOutput("Packets sent", metricsSN, "total", (packetsSentSum-ssum));
-		collectOutput("Packets received", metricsSN, "total", (packetsReceivedSum-rsum));
+		//collectOutput("Packets ssum", metricsSN, "total", ssum);
+		//collectOutput("Packets packetsSentSum", metricsSN, "total", packetsSentSum);
+		collectOutput("Packets Sent", metricsSN, "total", (packetsSentSum-ssum));
+		collectOutput("Packets Received", metricsSN, "total", (packetsReceivedSum-rsum));
 		
 
 		delete(topo);
