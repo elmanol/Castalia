@@ -86,15 +86,15 @@ void EAmultipathRingsRouting::timerFiredCallback(int index)
 	if (index == COLLECT_BATTERY){
 
 		  /* Obtain a pointer to the energy manager module */
-	  	VirtualEnergyManager* engyMgr =
-		check_and_cast<VirtualEnergyManager*>(getParentModule()->getParentModule()->
-		getSubmodule("ResourceManager")->getSubmodule("EnergySubsystem")->getSubmodule("EnergyManager"));
+	  	//VirtualEnergyManager* engyMgr =
+		//check_and_cast<VirtualEnergyManager*>(getParentModule()->getParentModule()->
+		//getSubmodule("ResourceManager")->getSubmodule("EnergySubsystem")->getSubmodule("EnergyManager"));
 
-		double currentEnergyRatio = engyMgr->getCurrentEnergyRatio();
-		trace() << "Current energy ratio: " << currentEnergyRatio;
-		collectBatterySN++;
-		collectOutput("Battery level", collectBatterySN, "BatteryOverTime", currentEnergyRatio);
-		setTimer(COLLECT_BATTERY, collectBatteryTimer);
+		//double currentEnergyRatio = engyMgr->getCurrentEnergyRatio();
+		//trace() << "Current energy ratio: " << currentEnergyRatio;
+		//collectBatterySN++;
+		//collectOutput("Battery level", collectBatterySN, "BatteryOverTime", currentEnergyRatio);
+		//setTimer(COLLECT_BATTERY, collectBatteryTimer);
 	
 	}else if (index == TOPOLOGY_MSG){
 	
@@ -108,8 +108,8 @@ void EAmultipathRingsRouting::timerFiredCallback(int index)
 			getSubmodule("ResourceManager")->getSubmodule("EnergySubsystem")->getSubmodule("EnergyManager"));
 
 		double currentHarvestingPower = engyMgr2->getCurrentHarvestingPower();
-		double currentEnergyRatio = engyMgr2->getCurrentEnergyRatio();
-		double MaxHarvestingPower = engyMgr2->getMaxHarvestingPower();
+		double currentEnergyRatio = engyMgr2->getCurrentEnergyRatio(); //current/max energy 
+		double MaxHarvestingPower = engyMgr2->getMaxHarvestingPower(); //current harvesting power /max harvesting power (manually set a the panel ned file)
 		double EnergyLevel;
 		double HarvestingRate=0;
 		
@@ -168,6 +168,7 @@ void EAmultipathRingsRouting::timerFiredCallback(int index)
 void EAmultipathRingsRouting::processBufferedPacket()
 {
 	while (!TXBuffer.empty()) {
+		trace() << "Neighbours here:"<<"\n";
 		int nextHop = findNextHop();
 		trace() << "Destination for application packet of "<< self << " is: " << nextHop;
 		toMacLayer(TXBuffer.front(), nextHop);
@@ -201,6 +202,7 @@ void EAmultipathRingsRouting::fromApplicationLayer(cPacket * pkt, const char *de
 			//Here we could send a control message to upper layer informing that our buffer is full
 		}
 	} else {		//++++ need to control flooding
+		trace() << "Neighbours here:"<<"\n";
 		int nextHop = findNextHop();
 		trace() << "Destination for application packet of "<< self << " is: " << nextHop;
 		toMacLayer(netPacket, nextHop);
@@ -299,7 +301,9 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 						// updated before calling toMacLayer() function
 						EAmultipathRingsRoutingPacket *dupPacket = netPacket->dup();
 						dupPacket->setSenderLevel(currentLevel);
+						trace() << "Neighbours here:"<<"\n";
 						int nextHop = findNextHop();
+						trace() << "Propagated packet destination of "<< self << " is: " << nextHop;
 						toMacLayer(dupPacket, nextHop);
 						trace()<<"ENERGY AWARE: Self net address: "<<SELF_NETWORK_ADDRESS<<", Receiver Address: "<<nextHop;
 					}
@@ -321,16 +325,17 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 }
 
 int EAmultipathRingsRouting::findNextHop(){
+
 	double maxMetric = -1;
-	int nextHop;
+	int nextHop = 0;
 	
 	for(map<string,neighbour>::const_iterator it = neighboursMap.begin(); it != neighboursMap.end(); ++it)
 	{
-	    trace() << "Map of Neighbours of "<<self<<": "<< it->first <<", Energy: "<< (it->second).EnergyLevel <<", RSSI: "<< (it->second).Rssi<< "\n";
+	    trace() << "Map of Neighbours of "<<self<<": "<< it->first <<", Energy: "<< (it->second).EnergyLevel <<", RSSI: "<< (it->second).Rssi;
 	    
 	    double energy = (it->second).EnergyLevel;
 	    double rssi = (it->second).Rssi;
-	    trace() << "RSSI in map: "<< rssi <<" and metric is: "<< 0.8*100*energy + 0.2*0.1*rssi;
+	    trace() << "RSSI in map: "<< rssi <<" and metric is: "<< 0.8*100*energy + 0.2*0.1*rssi <<"\n";
 	    double metric = 0.9*100*energy + 0.1*0.1*rssi;
 	    
 	    if (metric > maxMetric){
@@ -340,7 +345,6 @@ int EAmultipathRingsRouting::findNextHop(){
 	    
 	    }
 	}
-	
 	return nextHop;
 }
 

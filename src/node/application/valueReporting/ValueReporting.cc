@@ -94,12 +94,20 @@ void ValueReporting::timerFiredCallback(int index)
 
 			collectOutput("Avg Latency", metricsSN, "total", total_latency/packetsSentSum);
 			//collectOutput("Packets Rate", metricsSN, "total", total_received/packetsSentSum);
-			collectOutput("Packets Loss Rate", metricsSN, "total", 1-total_received/packetsSentSum);
+
+			float prr = (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum);
+			float plr = (float)(1-prr);
+
 			if (packetsSentSum>0){
-			  collectOutput("Packets Reception Rate", metricsSN, "total", (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum));
+			  collectOutput("Packets Reception Rate", metricsSN, "total", prr);
+			  collectOutput("Packets Loss Rate", metricsSN, "total", plr );
+			
 			}else{
 			  collectOutput("Packets Reception Rate", metricsSN, "total", 0);
+                         collectOutput("Packets Loss Rate", metricsSN, "total", 0);
 			}
+			
+			
 			//collectOutput("Packets ssum", metricsSN, "total", ssum);
 			collectOutput("Packets Sent", metricsSN, "total", (packetsSentSum-ssum));
 			//collectOutput("Packets packetsSentSum", metricsSN, "total", packetsSentSum);
@@ -213,12 +221,17 @@ void ValueReporting::finishSpecific() {
 		
 		collectOutput("Avg Latency", metricsSN, "total", total_latency/packetsSentSum);
 		//collectOutput("Packets Rate", metricsSN, "total", total_received/packetsSentSum);
-		collectOutput("Packets Loss Rate", metricsSN, "total", 1-total_received/packetsSentSum);
+		//collectOutput("Packets Loss Rate", metricsSN, "total", 1-total_received/packetsSentSum);
+		float prr = (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum);
+		float plr = (float)(1-prr);
 		if (packetsSentSum>0){
-		  collectOutput("Packets Reception Rate", metricsSN, "total", (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum));
+		  collectOutput("Packets Reception Rate", metricsSN, "total", prr);
+		  collectOutput("Packets Loss Rate", metricsSN, "total", plr);
 		}else{
 		  collectOutput("Packets Reception Rate", metricsSN, "total", 0);
+		  collectOutput("Packets Loss Rate", metricsSN, "total", 0);
 		}
+		
 		//collectOutput("Packets ssum", metricsSN, "total", ssum);
 		//collectOutput("Packets packetsSentSum", metricsSN, "total", packetsSentSum);
 		collectOutput("Packets Sent", metricsSN, "total", (packetsSentSum-ssum));
