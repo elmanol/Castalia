@@ -19,11 +19,11 @@ void ValueReporting::startup()
 
       if (!hasDied){  
 	maxSampleInterval = par("maxSampleInterval");
-	minSampleInterval = par("minSampleInterval");
-	double r = ((double) rand() / (RAND_MAX)) + 1;
-	minSampleInterval = minSampleInterval;
+	sampleInterval = par("sampleInterval");
 	firstSampleInterval = par("firstSampleInterval");
 	metricsInterval = par("metricsInterval");
+	countFinal = par("countFinal");
+	randomBackoffIntervalFraction = genk_dblrand(0);
 	currSentSampleSN = 0;
 	packetsSentSum = 0;
 	packetsReceivedSum =0;
@@ -61,7 +61,7 @@ void ValueReporting::timerFiredCallback(int index)
 	switch (index) {
 		case REQUEST_SAMPLE:{
 			requestSensorReading();
-			setTimer(REQUEST_SAMPLE, minSampleInterval);
+			setTimer(REQUEST_SAMPLE, sampleInterval);
 			break;
 		}
 		case METRICS:{
@@ -187,7 +187,7 @@ void ValueReporting::handleNetworkControlMessage(cMessage * msg){
 void ValueReporting::finishSpecific() {
 	
 
-	if (isSink) {
+	if (isSink&&countFinal) {
 
 		// if (packet_rate > 0 && bytesDelivered > 0) {
 		// 	double energy = (enMgrModule->getTotEnergySupplied() * 1000000000)/(bytesDelivered * 8);	//in nanojoules/bit
@@ -218,7 +218,7 @@ void ValueReporting::finishSpecific() {
 			}
 			
 		}		
-		
+
 		collectOutput("Avg Latency", metricsSN, "total", total_latency/packetsSentSum);
 		//collectOutput("Packets Rate", metricsSN, "total", total_received/packetsSentSum);
 		//collectOutput("Packets Loss Rate", metricsSN, "total", 1-total_received/packetsSentSum);

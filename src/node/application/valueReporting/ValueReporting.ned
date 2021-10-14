@@ -23,10 +23,11 @@ simple ValueReporting like node.application.iApplication {
 	int packetHeaderOverhead = default (8);	// in bytes
 	int constantDataPayload = default (12);	// in bytes
 	double maxSampleInterval = default (60);// in sec
-	double minSampleInterval = default (5); // in sec
+	double sampleInterval = default (5); // in sec
 	int metricsInterval = default (3600); // in sec
 	double firstSampleInterval = default (5); // in sec
 	bool isSink = default (false);
+	bool countFinal = default (false);
 	string recipient = default ("0");	// Destination for packets received in this node. 
 
  gates:

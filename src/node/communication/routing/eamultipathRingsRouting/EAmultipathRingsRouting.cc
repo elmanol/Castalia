@@ -12,20 +12,25 @@
 
 #include "EAmultipathRingsRouting.h"
 #include "VirtualEnergyManager.h"
+#include "VirtualEnergyPredictor.h"
 
 Define_Module(EAmultipathRingsRouting);
 
 void EAmultipathRingsRouting::startup()
 {
-
+	    	    
       if (!hasDied){  
 	
         double r = ((double) rand() / (RAND_MAX)) + 1;
 	collectBatterySN = 0;
+
+	energyMetricPercentage = par("energyMetricPercentage");
+	rssiMetricPercentage = par("rssiMetricPercentage");    
 	
 	startupDelay = par("startupDelay");
 	rssiThreshold = par("rssiThreshold");
 	netSetupTimeout = par("netSetupTimeout");
+
 
 	collectBatteryTimer = par("collectBatteryTimer");
 	sendEnergyTimer = par("sendEnergyTimer");
@@ -53,6 +58,7 @@ void EAmultipathRingsRouting::startup()
 	}
 	declareOutput("Propagated_data");
 	declareOutput("Battery level");
+	declareOutput("Predictions");
      }
      hasDied = true;
 }
@@ -329,6 +335,16 @@ int EAmultipathRingsRouting::findNextHop(){
 	double maxMetric = -1;
 	int nextHop = 0;
 	
+	/* Obtain a pointer to the energy predictor module */
+	VirtualEnergyPredictor* predictorModule = check_and_cast<VirtualEnergyPredictor*>(getParentModule()
+	->getParentModule()->getSubmodule("ResourceManager")->getSubmodule("EnergySubsystem")->getSubmodule("EnergyPrediction"));
+
+	simtime_t predTime = simTime().dbl()+10;
+	double predHarvPwr = predictorModule->getPrediction( predTime );
+	
+	trace()<<"Prediction: "<<predHarvPwr;
+	collectOutput("Predictions");
+	collectOutput("Predictions", predHarvPwr);
 	for(map<string,neighbour>::const_iterator it = neighboursMap.begin(); it != neighboursMap.end(); ++it)
 	{
 	    trace() << "Map of Neighbours of "<<self<<": "<< it->first <<", Energy: "<< (it->second).EnergyLevel <<", RSSI: "<< (it->second).Rssi;
@@ -336,7 +352,9 @@ int EAmultipathRingsRouting::findNextHop(){
 	    double energy = (it->second).EnergyLevel;
 	    double rssi = (it->second).Rssi;
 	    trace() << "RSSI in map: "<< rssi <<" and metric is: "<< 0.8*100*energy + 0.2*0.1*rssi <<"\n";
-	    double metric = 0.9*100*energy + 0.1*0.1*rssi;
+	    
+	    
+	    double metric = energyMetricPercentage*100*energy + rssiMetricPercentage*0.1*rssi;
 	    
 	    if (metric > maxMetric){
 	    	

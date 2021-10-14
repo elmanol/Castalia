@@ -26,7 +26,7 @@ enum ValueReportingTimers {
 class ValueReporting: public VirtualApplication {
  private:
 	double maxSampleInterval;
-	double minSampleInterval;
+	double sampleInterval;
 	double firstSampleInterval;
 	double metricsInterval;
 	int metricsSN;
@@ -37,6 +37,7 @@ class ValueReporting: public VirtualApplication {
 	double randomBackoffIntervalFraction;
 	bool sentOnce;
 	bool hasDied=false;
+	bool countFinal;		//is a .ned file parameter of the Application module
 	//variables below are used to determine the packet delivery rates.	
 	int numNodes;
 	//simtime_t packetLatency;
