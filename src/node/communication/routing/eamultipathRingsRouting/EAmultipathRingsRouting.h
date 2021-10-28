@@ -40,6 +40,8 @@ class EAmultipathRingsRouting: public VirtualRouting {
 	int collectBatterySN;
 	double collectBatteryTimer;
 	double sendEnergyTimer;
+	double energyMetricPercentage;
+	double rssiMetricPercentage;
 	// EAmultipathRingsRouting-related member variables
 	bool hasDied=false;
 	int engyMgrCounter;
