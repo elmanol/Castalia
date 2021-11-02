@@ -41,6 +41,7 @@ class EAmultipathRingsRouting: public VirtualRouting {
 	double collectBatteryTimer;
 	double sendEnergyTimer;
 	double energyMetricPercentage;
+	double h_energyMetricPercentage;
 	double rssiMetricPercentage;
 	// EAmultipathRingsRouting-related member variables
 	bool hasDied=false;
@@ -57,11 +58,13 @@ class EAmultipathRingsRouting: public VirtualRouting {
 	bool isScheduledNetSetupTimeout;
 	
 	struct neighbour{
-		double EnergyLevel;
+		double EnergyRate;
+		double HarvestingRate;
 		int RingLevel;
 		double Rssi;
 		neighbour(){
-			EnergyLevel = 0;
+			EnergyRate = 0;
+			HarvestingRate = 0;
 			RingLevel = 0;
 			Rssi = 0;
 		}

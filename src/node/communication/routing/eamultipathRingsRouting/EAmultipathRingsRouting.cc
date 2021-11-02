@@ -25,6 +25,7 @@ void EAmultipathRingsRouting::startup()
 	collectBatterySN = 0;
 
 	energyMetricPercentage = par("energyMetricPercentage");
+	h_energyMetricPercentage = par("h_energyMetricPercentage");
 	rssiMetricPercentage = par("rssiMetricPercentage");    
 	
 	startupDelay = par("startupDelay");
@@ -116,25 +117,29 @@ void EAmultipathRingsRouting::timerFiredCallback(int index)
 		double currentHarvestingPower = engyMgr2->getCurrentHarvestingPower();
 		double currentEnergyRatio = engyMgr2->getCurrentEnergyRatio(); //current/max energy 
 		double MaxHarvestingPower = engyMgr2->getMaxHarvestingPower(); //current harvesting power /max harvesting power (manually set a the panel ned file)
-		double EnergyLevel;
+		double EnergyRate;
 		double HarvestingRate=0;
 		
 		if (MaxHarvestingPower > 0){
 		
 			HarvestingRate = currentHarvestingPower/MaxHarvestingPower;
-			EnergyLevel = currentEnergyRatio+HarvestingRate;
+			EnergyRate = currentEnergyRatio;
+
 			
 		}else{
-			EnergyLevel = currentEnergyRatio;
+
+			EnergyRate = currentEnergyRatio;
+			HarvestingRate = 0;
 		}
 		
-		trace()<<"Harvesting Rate: "<< HarvestingRate << ", Remaining Energy: "<<currentEnergyRatio << ", MaxHarvestingPower: "<< MaxHarvestingPower;
+		trace()<<"Harvesting Rate: "<< HarvestingRate << ", Remaining Energy: "<<EnergyRate << ", MaxHarvestingPower: "<< MaxHarvestingPower;
 		
 		EAmultipathRingsRoutingPacket *energyPacket =
 		    new EAmultipathRingsRoutingPacket("Multipath rings energy packet", NETWORK_LAYER_PACKET);
 		energyPacket->setEamultipathRingsRoutingPacketKind(MPRINGS_ENERGY_PACKET);
 		energyPacket->setSource(SELF_NETWORK_ADDRESS);
-		energyPacket->setEnergyStatus(EnergyLevel);
+		energyPacket->setEnergyRate(EnergyRate);
+		energyPacket->setHarvestingRate(HarvestingRate);
 		energyPacket->setSenderLevel(currentLevel);
 		toMacLayer(energyPacket, BROADCAST_MAC_ADDRESS);
 		
@@ -234,19 +239,24 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 			
 			if (it != neighboursMap.end()){			     //already a neighbour
 
-				double energyLevel = netPacket->getEnergyStatus(); //get the neighbour's energy
-				neighboursMap[src].EnergyLevel = energyLevel;	     //update the neighbour's energy
+				double EnergyRate = netPacket->getEnergyRate(); //get the neighbour's energy
+				double HarvestingRate = netPacket->getHarvestingRate(); //get the neighbour's energy
+
+				neighboursMap[src].EnergyRate = EnergyRate;	     //update the neighbour's energy
+				neighboursMap[src].HarvestingRate = HarvestingRate;	     //update the neighbour's energy
 				neighboursMap[src].RingLevel = senderLevel;	     //update the neighbour's energy
 				neighboursMap[src].Rssi = rssi;	     //update the neighbour's rssi
 				trace() << "Already a neighbour";
 					
 			}else if (currentLevel == senderLevel+1){  // if not already a neighbour although it should be
 				trace() << "My current level is: "<< currentLevel << " and my sender's "<< src <<" level is: "<< senderLevel;
-				double energyLevel = netPacket->getEnergyStatus(); //get the new neighbour's energy
+				double EnergyRate = netPacket->getEnergyRate(); //get the neighbour's energy
+				double HarvestingRate = netPacket->getHarvestingRate(); //get the neighbour's energy
 
-			      	neighbour neigh;		   //create neighbour struct object
-			        neigh.RingLevel = senderLevel;   //set new neighbour ring level
-				neigh.EnergyLevel = energyLevel; //set new neighbour ring level
+			    neighbour neigh;		   //create neighbour struct object
+			    neigh.RingLevel = senderLevel;   //set new neighbour ring level
+				neigh.EnergyRate = EnergyRate; //set new neighbour ring level
+				neigh.HarvestingRate = HarvestingRate; //set new neighbour ring level
 				neigh.Rssi = rssi; 	  //set new neighbour rssi
 				neighboursMap[src] = neigh;	  //add the neighbour to my neighbours map				
 			}
@@ -347,14 +357,15 @@ int EAmultipathRingsRouting::findNextHop(){
 	collectOutput("Predictions", predHarvPwr);
 	for(map<string,neighbour>::const_iterator it = neighboursMap.begin(); it != neighboursMap.end(); ++it)
 	{
-	    trace() << "Map of Neighbours of "<<self<<": "<< it->first <<", Energy: "<< (it->second).EnergyLevel <<", RSSI: "<< (it->second).Rssi;
+	    trace() << "Map of Neighbours of "<<self<<": "<< it->first <<", Energy: "<< (it->second).EnergyRate <<", RSSI: "<< (it->second).Rssi;
 	    
-	    double energy = (it->second).EnergyLevel;
+	    double energy_rate = (it->second).EnergyRate;
+	    double harvesting_rate = (it->second).HarvestingRate;
 	    double rssi = (it->second).Rssi;
-	    trace() << "RSSI in map: "<< rssi <<" and metric is: "<< 0.8*100*energy + 0.2*0.1*rssi <<"\n";
+	    trace() << "RSSI in map: "<< rssi <<" and energy is: "<< energy_rate <<" and h_energy is: "<< harvesting_rate <<"\n";
 	    
 	    
-	    double metric = energyMetricPercentage*100*energy + rssiMetricPercentage*0.1*rssi;
+	    double metric = h_energyMetricPercentage*100*harvesting_rate + energyMetricPercentage*100*energy_rate + rssiMetricPercentage*0.1*rssi;
 	    
 	    if (metric > maxMetric){
 	    	
