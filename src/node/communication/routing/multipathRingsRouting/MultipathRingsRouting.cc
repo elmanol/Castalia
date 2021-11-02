@@ -17,8 +17,10 @@ Define_Module(MultipathRingsRouting);
 
 void MultipathRingsRouting::startup()
 {
+
+      if (!hasDied){  
 	collectBatterySN =0;
-	netSetupTimeout = (double)par("netSetupTimeout") / 1000.0;
+	netSetupTimeout = (double)par("netSetupTimeout");
 	collectBatteryTimer = par("collectBatteryTimer");
 	mpathRingsSetupFrameOverhead = par("mpathRingsSetupFrameOverhead");
 
@@ -43,7 +45,8 @@ void MultipathRingsRouting::startup()
 	}
 	declareOutput("Propagated_data");
 	declareOutput("Battery level");
-
+     }
+     hasDied = true;
 }
 
 void MultipathRingsRouting::sendTopologySetupPacket()
@@ -83,7 +86,7 @@ void MultipathRingsRouting::timerFiredCallback(int index)
 		double currentEnergyRatio = engyMgr->getCurrentEnergyRatio();
 		trace() << "Current energy ratio: " << currentEnergyRatio;
 		collectBatterySN++;
-		collectOutput("Battery level", collectBatterySN*collectBatteryTimer, "TimeOverBattery", currentEnergyRatio);
+		collectOutput("Battery level", collectBatterySN, "BatteryOverTime", currentEnergyRatio);
 		setTimer(COLLECT_BATTERY, collectBatteryTimer);
 
 	}else{
@@ -231,4 +234,5 @@ void MultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double r
 		}
 	}
 }
+
 

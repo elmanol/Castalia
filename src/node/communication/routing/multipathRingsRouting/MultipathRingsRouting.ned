@@ -20,8 +20,8 @@ simple MultipathRingsRouting like node.communication.routing.iRouting {
 	int netDataFrameOverhead = default (14);			// bytes
 	int mpathRingsSetupFrameOverhead = default (13);	// bytes
 	int startupDelay = default (50);					// 
-	int netSetupTimeout = default (500);					// msec
-	int collectBatteryTimer = default (50);					// msec
+	int netSetupTimeout = default (0.5);					// msec
+	int collectBatteryTimer = default (1800);					// msec
 
 
  gates:

@@ -20,27 +20,32 @@ using namespace std;
 
 enum ValueReportingTimers {
 	REQUEST_SAMPLE = 1,
+	METRICS = 2,
 };
 
 class ValueReporting: public VirtualApplication {
  private:
 	double maxSampleInterval;
-	double minSampleInterval;
+	double sampleInterval;
 	double firstSampleInterval;
-
-
+	double metricsInterval;
+	int metricsSN;
 	int routingLevel;
 	double lastSensedValue;
 	int currSentSampleSN;
 
 	double randomBackoffIntervalFraction;
 	bool sentOnce;
+	bool hasDied=false;
+	bool countFinal;		//is a .ned file parameter of the Application module
 	//variables below are used to determine the packet delivery rates.	
 	int numNodes;
-	int packetsSentSum;
 	//simtime_t packetLatency;
 	//simtime_t packetLatencySum;
 	int packetsReceivedSum;
+	int packetsSentSum;
+	int ssum;
+	int rsum;
 	map<long, double> packetLatency;
 	map<long,int> packetsReceived;
 	map<long,int> bytesReceived;

@@ -31,9 +31,6 @@ void Radio::initialize()
 	declareOutput("RX pkt breakdown");
 	declareOutput("TXed pkts");
 	declareOutput("Buffer overflow");
-	declareOutput("Dead");
-	declareOutput("Dead_simtime");
-
 }
 
 void Radio::handleMessage(cMessage * msg)
@@ -346,10 +343,6 @@ void Radio::handleMessage(cMessage * msg)
 			trace() << "Radio disabled: Out of energy";
 			disabled = 1;
 
-            collectOutput("Dead"," ",SIMTIME_DBL(simTime()));
-            collectOutput("Dead_simtime",SIMTIME_DBL(simTime()), "Dead nodes over simulation time",1);
-
-			
 			changingToState = -1;
 			if (stateTransitionMsg ) {
 				cancelAndDelete(stateTransitionMsg);

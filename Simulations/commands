@@ -3,3 +3,10 @@ CastaliaResults -i 210606-174535.txt -s packets
 CastaliaResults -i 210606-174535.txt -s "packet break"
 
 CastaliaResults -i 210611-135450.txt -s 'Energy Breakdown' --filter-column="Harvested" | CastaliaPlot -o energy.ps
+
+
+
+CastaliaResults -i -s 'Packets received' | CastaliaPlot -o received.ps
+
+
+CastaliaResults -i 211029-102534.txt -s 'Energy Breakdown' --filter-column="Supplied" | CastaliaPlot -o supplied.eps -s histogram --yrange=0:7 --title="Energy Consumption" --ytitle="Energy Consumed" --colors=b -d --invert -l left
