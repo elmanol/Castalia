@@ -68,7 +68,8 @@ EAmultipathRingsRoutingPacket::EAmultipathRingsRoutingPacket(const char *name, i
     this->eamultipathRingsRoutingPacketKind_var = 0;
     this->sinkID_var = 0;
     this->senderLevel_var = 0;
-    this->energyStatus_var = 0;
+    this->energyLevel_var = 0;
+    this->harvestingRate_var = 0;
 }
 
 EAmultipathRingsRoutingPacket::EAmultipathRingsRoutingPacket(const EAmultipathRingsRoutingPacket& other) : ::RoutingPacket(other)
@@ -93,7 +94,8 @@ void EAmultipathRingsRoutingPacket::copy(const EAmultipathRingsRoutingPacket& ot
     this->eamultipathRingsRoutingPacketKind_var = other.eamultipathRingsRoutingPacketKind_var;
     this->sinkID_var = other.sinkID_var;
     this->senderLevel_var = other.senderLevel_var;
-    this->energyStatus_var = other.energyStatus_var;
+    this->energyLevel_var = other.energyLevel_var;
+    this->harvestingRate_var = other.harvestingRate_var;
 }
 
 void EAmultipathRingsRoutingPacket::parsimPack(cCommBuffer *b)
@@ -102,7 +104,8 @@ void EAmultipathRingsRoutingPacket::parsimPack(cCommBuffer *b)
     doPacking(b,this->eamultipathRingsRoutingPacketKind_var);
     doPacking(b,this->sinkID_var);
     doPacking(b,this->senderLevel_var);
-    doPacking(b,this->energyStatus_var);
+    doPacking(b,this->energyLevel_var);
+    doPacking(b,this->harvestingRate_var);
 }
 
 void EAmultipathRingsRoutingPacket::parsimUnpack(cCommBuffer *b)
@@ -111,7 +114,8 @@ void EAmultipathRingsRoutingPacket::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->eamultipathRingsRoutingPacketKind_var);
     doUnpacking(b,this->sinkID_var);
     doUnpacking(b,this->senderLevel_var);
-    doUnpacking(b,this->energyStatus_var);
+    doUnpacking(b,this->energyLevel_var);
+    doUnpacking(b,this->harvestingRate_var);
 }
 
 int EAmultipathRingsRoutingPacket::getEamultipathRingsRoutingPacketKind() const
@@ -144,14 +148,24 @@ void EAmultipathRingsRoutingPacket::setSenderLevel(int senderLevel)
     this->senderLevel_var = senderLevel;
 }
 
-double EAmultipathRingsRoutingPacket::getEnergyStatus() const
+double EAmultipathRingsRoutingPacket::getEnergyLevel() const
 {
-    return energyStatus_var;
+    return energyLevel_var;
 }
 
-void EAmultipathRingsRoutingPacket::setEnergyStatus(double energyStatus)
+void EAmultipathRingsRoutingPacket::setEnergyLevel(double energyLevel)
 {
-    this->energyStatus_var = energyStatus;
+    this->energyLevel_var = energyLevel;
+}
+
+double EAmultipathRingsRoutingPacket::getHarvestingRate() const
+{
+    return harvestingRate_var;
+}
+
+void EAmultipathRingsRoutingPacket::setHarvestingRate(double harvestingRate)
+{
+    this->harvestingRate_var = harvestingRate;
 }
 
 class EAmultipathRingsRoutingPacketDescriptor : public cClassDescriptor
@@ -201,7 +215,7 @@ const char *EAmultipathRingsRoutingPacketDescriptor::getProperty(const char *pro
 int EAmultipathRingsRoutingPacketDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
+    return basedesc ? 5+basedesc->getFieldCount(object) : 5;
 }
 
 unsigned int EAmultipathRingsRoutingPacketDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -217,8 +231,9 @@ unsigned int EAmultipathRingsRoutingPacketDescriptor::getFieldTypeFlags(void *ob
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
+        FD_ISEDITABLE,
     };
-    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<5) ? fieldTypeFlags[field] : 0;
 }
 
 const char *EAmultipathRingsRoutingPacketDescriptor::getFieldName(void *object, int field) const
@@ -233,9 +248,10 @@ const char *EAmultipathRingsRoutingPacketDescriptor::getFieldName(void *object, 
         "eamultipathRingsRoutingPacketKind",
         "sinkID",
         "senderLevel",
-        "energyStatus",
+        "energyLevel",
+        "harvestingRate",
     };
-    return (field>=0 && field<4) ? fieldNames[field] : NULL;
+    return (field>=0 && field<5) ? fieldNames[field] : NULL;
 }
 
 int EAmultipathRingsRoutingPacketDescriptor::findField(void *object, const char *fieldName) const
@@ -245,7 +261,8 @@ int EAmultipathRingsRoutingPacketDescriptor::findField(void *object, const char 
     if (fieldName[0]=='e' && strcmp(fieldName, "eamultipathRingsRoutingPacketKind")==0) return base+0;
     if (fieldName[0]=='s' && strcmp(fieldName, "sinkID")==0) return base+1;
     if (fieldName[0]=='s' && strcmp(fieldName, "senderLevel")==0) return base+2;
-    if (fieldName[0]=='e' && strcmp(fieldName, "energyStatus")==0) return base+3;
+    if (fieldName[0]=='e' && strcmp(fieldName, "energyLevel")==0) return base+3;
+    if (fieldName[0]=='h' && strcmp(fieldName, "harvestingRate")==0) return base+4;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -262,8 +279,9 @@ const char *EAmultipathRingsRoutingPacketDescriptor::getFieldTypeString(void *ob
         "int",
         "int",
         "double",
+        "double",
     };
-    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<5) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *EAmultipathRingsRoutingPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -309,7 +327,8 @@ std::string EAmultipathRingsRoutingPacketDescriptor::getFieldAsString(void *obje
         case 0: return long2string(pp->getEamultipathRingsRoutingPacketKind());
         case 1: return long2string(pp->getSinkID());
         case 2: return long2string(pp->getSenderLevel());
-        case 3: return double2string(pp->getEnergyStatus());
+        case 3: return double2string(pp->getEnergyLevel());
+        case 4: return double2string(pp->getHarvestingRate());
         default: return "";
     }
 }
@@ -327,7 +346,8 @@ bool EAmultipathRingsRoutingPacketDescriptor::setFieldAsString(void *object, int
         case 0: pp->setEamultipathRingsRoutingPacketKind(string2long(value)); return true;
         case 1: pp->setSinkID(string2long(value)); return true;
         case 2: pp->setSenderLevel(string2long(value)); return true;
-        case 3: pp->setEnergyStatus(string2double(value)); return true;
+        case 3: pp->setEnergyLevel(string2double(value)); return true;
+        case 4: pp->setHarvestingRate(string2double(value)); return true;
         default: return false;
     }
 }
