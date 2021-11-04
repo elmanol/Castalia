@@ -51,7 +51,7 @@ void EAmultipathRingsRouting::startup()
 	isScheduledNetSetupTimeout = false;
 	currentSequenceNumber = 0;
 
-	setTimer(COLLECT_BATTERY, collectBatteryTimer);
+	//setTimer(COLLECT_BATTERY, collectBatteryTimer);
 	
 	if (isSink){
 		setTimer(TOPOLOGY_MSG, startupDelay);
@@ -155,13 +155,13 @@ void EAmultipathRingsRouting::timerFiredCallback(int index)
 			if (!isConnected) {
 				isConnected = true;
 				sendControlMessage(MPRINGS_CONNECTED_TO_TREE);
-				setTimer(ENERGY_MSG, 5);
+				setTimer(ENERGY_MSG,5);
 				trace() << "Connected to " << currentSinkID << " at level " << currentLevel;
 				if (!TXBuffer.empty())
 					processBufferedPacket();
 			} else {
 				sendControlMessage(MPRINGS_TREE_LEVEL_UPDATED);
-				setTimer(ENERGY_MSG, 5);
+				setTimer(ENERGY_MSG,5);
 				trace() << "Reconnected to " << currentSinkID << " at level " << currentLevel;
 			}
 			sendTopologySetupPacket();
@@ -232,7 +232,7 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 			int senderLevel = netPacket->getSenderLevel();	//get sender's level to see if it qualifies to be my neighbour
 			
 			std::map<string,neighbour>::iterator it = neighboursMap.find(src);	//iterator so that i can see if the node is already in my neighbours map
-			
+			trace() << "My current level is: "<< currentLevel << " and my sender's "<< src <<" level is: "<< senderLevel;
 			if (it != neighboursMap.end()){			     //already a neighbour
 
 				double energyLevel = netPacket->getEnergyLevel(); //get the neighbour's energy
@@ -244,7 +244,6 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 				trace() << "Already a neighbour";
 					
 			}else if (currentLevel == senderLevel+1){  // if not already a neighbour although it should be
-				trace() << "My current level is: "<< currentLevel << " and my sender's "<< src <<" level is: "<< senderLevel;
 				double energyLevel = netPacket->getEnergyLevel(); //get the new neighbour's energy
 				double harvestingRate = netPacket->getHarvestingRate(); //get the new neighbour's harvesting rate
 			      	neighbour neigh;		   //create neighbour struct object
@@ -260,8 +259,8 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 		case MPRINGS_TOPOLOGY_SETUP_PACKET:{
 		
 		
-			//if (rssi < rssiThreshold)
-			//	return;
+			if (rssi < rssiThreshold)
+				return;
 
 			if (isSink)
 				break;
@@ -351,15 +350,16 @@ int EAmultipathRingsRouting::findNextHop(){
 	collectOutput("Predictions", predHarvPwr);
 	for(map<string,neighbour>::const_iterator it = neighboursMap.begin(); it != neighboursMap.end(); ++it)
 	{
-	    trace() << "Map of Neighbours of "<<self<<": "<< it->first <<", Energy: "<< (it->second).EnergyLevel <<", RSSI: "<< (it->second).Rssi;
 	    
 	    double energy = (it->second).EnergyLevel;
 	    double harvesting_rate = (it->second).HarvestingRate;
-	    double rssi = (it->second).Rssi;
-	    trace() << "RSSI in map: "<< rssi <<" and metric is: "<< 0.8*100*energy + 0.2*0.1*rssi <<"\n";
-	    
-	    
+	    double rssi = (it->second).Rssi;    
 	    double metric = h_energyMetricPercentage*100*harvesting_rate + energyMetricPercentage*100*energy + rssiMetricPercentage*0.1*rssi;
+
+	    trace() << "Map of Neighbours of "<<self<<": "<< it->first <<", Energy: "<< energy <<", Harvesting: "<< harvesting_rate <<", RSSI: "<< rssi;
+	    
+	    trace() << "RSSI in map: "<< rssiMetricPercentage*0.1*rssi <<", Harvesting is: "<< h_energyMetricPercentage*1000*harvesting_rate <<", Energy is " <<energyMetricPercentage*100*energy <<" Metric is "<<metric<<"\n";
+	    
 	    
 	    if (metric > maxMetric){
 	    	
@@ -368,6 +368,7 @@ int EAmultipathRingsRouting::findNextHop(){
 	    
 	    }
 	}
+	trace() << "Number of Neighbours of "<<self<<": "<< neighboursMap.size();
 	return nextHop;
 }
 
