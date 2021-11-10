@@ -24,6 +24,7 @@
 #include "ResourceManager.h"
 #include "RoutingPacket_m.h"
 #include "ApplicationPacket_m.h"
+#include "VirtualMobilityManager.h"
 
 #define SELF_NETWORK_ADDRESS selfAddress.c_str()
 #define ROUTE_DEST_DELIMITER "#"
@@ -42,7 +43,7 @@ class VirtualRouting: public CastaliaModule, public TimerService {
 	/*--- Custom class parameters ---*/
 	double radioDataRate;
 	ResourceManager *resMgrModule;
-
+	VirtualMobilityManager *mobilityModule;	// a pointer to the mobility Manager module
 	queue< cPacket* > TXBuffer;
 	vector< list< unsigned int> > pktHistory;
 

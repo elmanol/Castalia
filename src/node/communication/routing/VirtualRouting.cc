@@ -23,6 +23,10 @@
 #include "VirtualRouting.h"
 void VirtualRouting::initialize()
 {
+
+	cModule *parent = getParentModule();
+	mobilityModule = check_and_cast <VirtualMobilityManager*>(getParentModule()->getParentModule()->getSubmodule("MobilityManager"));
+	
 	maxNetFrameSize = par("maxNetFrameSize");
 	netDataFrameOverhead = par("netDataFrameOverhead");
 	netBufferSize = par("netBufferSize");

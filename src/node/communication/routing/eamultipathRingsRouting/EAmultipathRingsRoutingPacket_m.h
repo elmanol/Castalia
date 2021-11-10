@@ -45,9 +45,12 @@ enum eamultipathRingsRoutingPacketDef {
  *     int eamultipathRingsRoutingPacketKind @enum(eamultipathRingsRoutingPacketDef);	// 1 byte
  *     int sinkID;			// 2 bytes
  *     int senderLevel;	// 1 byte
- *     double energyLevel;
- *     double harvestingRate;
- * 
+ *     float energyLevel;	//4 bytes
+ *     float harvestingRate;	//4 bytes
+ *     int myX;
+ *     int myY;
+ *     int sX;
+ *     int sY;
  * 	//DATA packet overhead contains all fields, making its total size 13 bytes
  * 	//SETUP packet does not contain sequence number field, making its size 12 bytes
  * }
@@ -59,8 +62,12 @@ class EAmultipathRingsRoutingPacket : public ::RoutingPacket
     int eamultipathRingsRoutingPacketKind_var;
     int sinkID_var;
     int senderLevel_var;
-    double energyLevel_var;
-    double harvestingRate_var;
+    float energyLevel_var;
+    float harvestingRate_var;
+    int myX_var;
+    int myY_var;
+    int sX_var;
+    int sY_var;
 
   private:
     void copy(const EAmultipathRingsRoutingPacket& other);
@@ -85,10 +92,18 @@ class EAmultipathRingsRoutingPacket : public ::RoutingPacket
     virtual void setSinkID(int sinkID);
     virtual int getSenderLevel() const;
     virtual void setSenderLevel(int senderLevel);
-    virtual double getEnergyLevel() const;
-    virtual void setEnergyLevel(double energyLevel);
-    virtual double getHarvestingRate() const;
-    virtual void setHarvestingRate(double harvestingRate);
+    virtual float getEnergyLevel() const;
+    virtual void setEnergyLevel(float energyLevel);
+    virtual float getHarvestingRate() const;
+    virtual void setHarvestingRate(float harvestingRate);
+    virtual int getMyX() const;
+    virtual void setMyX(int myX);
+    virtual int getMyY() const;
+    virtual void setMyY(int myY);
+    virtual int getSX() const;
+    virtual void setSX(int sX);
+    virtual int getSY() const;
+    virtual void setSY(int sY);
 };
 
 inline void doPacking(cCommBuffer *b, EAmultipathRingsRoutingPacket& obj) {obj.parsimPack(b);}

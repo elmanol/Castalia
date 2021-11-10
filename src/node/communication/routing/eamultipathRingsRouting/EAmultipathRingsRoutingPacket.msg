@@ -26,9 +26,12 @@ packet EAmultipathRingsRoutingPacket extends RoutingPacket {
 	int eamultipathRingsRoutingPacketKind enum (eamultipathRingsRoutingPacketDef);	// 1 byte
 	int sinkID;			// 2 bytes
 	int senderLevel;	// 1 byte
-	double energyLevel;
-	double harvestingRate;
-
+	float energyLevel;	//4 bytes
+	float harvestingRate;	//4 bytes
+	int myX;
+	int myY;
+	int sX;
+	int sY;
 	//DATA packet overhead contains all fields, making its total size 13 bytes
 	//SETUP packet does not contain sequence number field, making its size 12 bytes
 }

@@ -43,6 +43,7 @@ class EAmultipathRingsRouting: public VirtualRouting {
 	double energyMetricPercentage;
 	double h_energyMetricPercentage;
 	double rssiMetricPercentage;
+	int distanceThreshold;
 	// EAmultipathRingsRouting-related member variables
 	bool hasDied=false;
 	int engyMgrCounter;
@@ -52,7 +53,12 @@ class EAmultipathRingsRouting: public VirtualRouting {
 	int tmpSinkID;
 	int tmpLevel;
 	int rssiThreshold;
-	
+	int myX;
+	int myY;
+	int nX;
+	int nY;
+	int sX;
+	int sY;
 	bool isSink;		//is a .ned file parameter of the Application module
 	bool isConnected;	//attached under a parent node
 	bool isScheduledNetSetupTimeout;

@@ -33,7 +33,7 @@ void ValueReporting::startup()
 	declareOutput("Packets sensed per node");
 	int locX = mobilityModule->getLocation().x;
 	int locY = mobilityModule->getLocation().y;
-	trace() << locX<<", "<<locY;
+	//trace() << locX<<", "<<locY;
 	numNodes = getParentModule()->getParentModule()->par("numNodes");
 	packetsSent.clear();
 	packetsReceived.clear();
