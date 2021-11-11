@@ -70,10 +70,9 @@ EAmultipathRingsRoutingPacket::EAmultipathRingsRoutingPacket(const char *name, i
     this->senderLevel_var = 0;
     this->energyLevel_var = 0;
     this->harvestingRate_var = 0;
+    this->kidsStatus_var = 0;
     this->myX_var = 0;
     this->myY_var = 0;
-    this->sX_var = 0;
-    this->sY_var = 0;
 }
 
 EAmultipathRingsRoutingPacket::EAmultipathRingsRoutingPacket(const EAmultipathRingsRoutingPacket& other) : ::RoutingPacket(other)
@@ -100,10 +99,9 @@ void EAmultipathRingsRoutingPacket::copy(const EAmultipathRingsRoutingPacket& ot
     this->senderLevel_var = other.senderLevel_var;
     this->energyLevel_var = other.energyLevel_var;
     this->harvestingRate_var = other.harvestingRate_var;
+    this->kidsStatus_var = other.kidsStatus_var;
     this->myX_var = other.myX_var;
     this->myY_var = other.myY_var;
-    this->sX_var = other.sX_var;
-    this->sY_var = other.sY_var;
 }
 
 void EAmultipathRingsRoutingPacket::parsimPack(cCommBuffer *b)
@@ -114,10 +112,9 @@ void EAmultipathRingsRoutingPacket::parsimPack(cCommBuffer *b)
     doPacking(b,this->senderLevel_var);
     doPacking(b,this->energyLevel_var);
     doPacking(b,this->harvestingRate_var);
+    doPacking(b,this->kidsStatus_var);
     doPacking(b,this->myX_var);
     doPacking(b,this->myY_var);
-    doPacking(b,this->sX_var);
-    doPacking(b,this->sY_var);
 }
 
 void EAmultipathRingsRoutingPacket::parsimUnpack(cCommBuffer *b)
@@ -128,10 +125,9 @@ void EAmultipathRingsRoutingPacket::parsimUnpack(cCommBuffer *b)
     doUnpacking(b,this->senderLevel_var);
     doUnpacking(b,this->energyLevel_var);
     doUnpacking(b,this->harvestingRate_var);
+    doUnpacking(b,this->kidsStatus_var);
     doUnpacking(b,this->myX_var);
     doUnpacking(b,this->myY_var);
-    doUnpacking(b,this->sX_var);
-    doUnpacking(b,this->sY_var);
 }
 
 int EAmultipathRingsRoutingPacket::getEamultipathRingsRoutingPacketKind() const
@@ -184,6 +180,16 @@ void EAmultipathRingsRoutingPacket::setHarvestingRate(float harvestingRate)
     this->harvestingRate_var = harvestingRate;
 }
 
+float EAmultipathRingsRoutingPacket::getKidsStatus() const
+{
+    return kidsStatus_var;
+}
+
+void EAmultipathRingsRoutingPacket::setKidsStatus(float kidsStatus)
+{
+    this->kidsStatus_var = kidsStatus;
+}
+
 int EAmultipathRingsRoutingPacket::getMyX() const
 {
     return myX_var;
@@ -202,26 +208,6 @@ int EAmultipathRingsRoutingPacket::getMyY() const
 void EAmultipathRingsRoutingPacket::setMyY(int myY)
 {
     this->myY_var = myY;
-}
-
-int EAmultipathRingsRoutingPacket::getSX() const
-{
-    return sX_var;
-}
-
-void EAmultipathRingsRoutingPacket::setSX(int sX)
-{
-    this->sX_var = sX;
-}
-
-int EAmultipathRingsRoutingPacket::getSY() const
-{
-    return sY_var;
-}
-
-void EAmultipathRingsRoutingPacket::setSY(int sY)
-{
-    this->sY_var = sY;
 }
 
 class EAmultipathRingsRoutingPacketDescriptor : public cClassDescriptor
@@ -271,7 +257,7 @@ const char *EAmultipathRingsRoutingPacketDescriptor::getProperty(const char *pro
 int EAmultipathRingsRoutingPacketDescriptor::getFieldCount(void *object) const
 {
     cClassDescriptor *basedesc = getBaseClassDescriptor();
-    return basedesc ? 9+basedesc->getFieldCount(object) : 9;
+    return basedesc ? 8+basedesc->getFieldCount(object) : 8;
 }
 
 unsigned int EAmultipathRingsRoutingPacketDescriptor::getFieldTypeFlags(void *object, int field) const
@@ -291,9 +277,8 @@ unsigned int EAmultipathRingsRoutingPacketDescriptor::getFieldTypeFlags(void *ob
         FD_ISEDITABLE,
         FD_ISEDITABLE,
         FD_ISEDITABLE,
-        FD_ISEDITABLE,
     };
-    return (field>=0 && field<9) ? fieldTypeFlags[field] : 0;
+    return (field>=0 && field<8) ? fieldTypeFlags[field] : 0;
 }
 
 const char *EAmultipathRingsRoutingPacketDescriptor::getFieldName(void *object, int field) const
@@ -310,12 +295,11 @@ const char *EAmultipathRingsRoutingPacketDescriptor::getFieldName(void *object, 
         "senderLevel",
         "energyLevel",
         "harvestingRate",
+        "kidsStatus",
         "myX",
         "myY",
-        "sX",
-        "sY",
     };
-    return (field>=0 && field<9) ? fieldNames[field] : NULL;
+    return (field>=0 && field<8) ? fieldNames[field] : NULL;
 }
 
 int EAmultipathRingsRoutingPacketDescriptor::findField(void *object, const char *fieldName) const
@@ -327,10 +311,9 @@ int EAmultipathRingsRoutingPacketDescriptor::findField(void *object, const char 
     if (fieldName[0]=='s' && strcmp(fieldName, "senderLevel")==0) return base+2;
     if (fieldName[0]=='e' && strcmp(fieldName, "energyLevel")==0) return base+3;
     if (fieldName[0]=='h' && strcmp(fieldName, "harvestingRate")==0) return base+4;
-    if (fieldName[0]=='m' && strcmp(fieldName, "myX")==0) return base+5;
-    if (fieldName[0]=='m' && strcmp(fieldName, "myY")==0) return base+6;
-    if (fieldName[0]=='s' && strcmp(fieldName, "sX")==0) return base+7;
-    if (fieldName[0]=='s' && strcmp(fieldName, "sY")==0) return base+8;
+    if (fieldName[0]=='k' && strcmp(fieldName, "kidsStatus")==0) return base+5;
+    if (fieldName[0]=='m' && strcmp(fieldName, "myX")==0) return base+6;
+    if (fieldName[0]=='m' && strcmp(fieldName, "myY")==0) return base+7;
     return basedesc ? basedesc->findField(object, fieldName) : -1;
 }
 
@@ -348,12 +331,11 @@ const char *EAmultipathRingsRoutingPacketDescriptor::getFieldTypeString(void *ob
         "int",
         "float",
         "float",
-        "int",
-        "int",
+        "float",
         "int",
         "int",
     };
-    return (field>=0 && field<9) ? fieldTypeStrings[field] : NULL;
+    return (field>=0 && field<8) ? fieldTypeStrings[field] : NULL;
 }
 
 const char *EAmultipathRingsRoutingPacketDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
@@ -401,10 +383,9 @@ std::string EAmultipathRingsRoutingPacketDescriptor::getFieldAsString(void *obje
         case 2: return long2string(pp->getSenderLevel());
         case 3: return double2string(pp->getEnergyLevel());
         case 4: return double2string(pp->getHarvestingRate());
-        case 5: return long2string(pp->getMyX());
-        case 6: return long2string(pp->getMyY());
-        case 7: return long2string(pp->getSX());
-        case 8: return long2string(pp->getSY());
+        case 5: return double2string(pp->getKidsStatus());
+        case 6: return long2string(pp->getMyX());
+        case 7: return long2string(pp->getMyY());
         default: return "";
     }
 }
@@ -424,10 +405,9 @@ bool EAmultipathRingsRoutingPacketDescriptor::setFieldAsString(void *object, int
         case 2: pp->setSenderLevel(string2long(value)); return true;
         case 3: pp->setEnergyLevel(string2double(value)); return true;
         case 4: pp->setHarvestingRate(string2double(value)); return true;
-        case 5: pp->setMyX(string2long(value)); return true;
-        case 6: pp->setMyY(string2long(value)); return true;
-        case 7: pp->setSX(string2long(value)); return true;
-        case 8: pp->setSY(string2long(value)); return true;
+        case 5: pp->setKidsStatus(string2double(value)); return true;
+        case 6: pp->setMyX(string2long(value)); return true;
+        case 7: pp->setMyY(string2long(value)); return true;
         default: return false;
     }
 }

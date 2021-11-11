@@ -15,10 +15,11 @@ package node.communication.routing.eamultipathRingsRouting;
 simple EAmultipathRingsRouting like node.communication.routing.iRouting {
  parameters:
 
- 	double energyMetricPercentage = default(80);
- 	double rssiMetricPercentage = default(20);
+ 	double energyMetricPercentage = default (80);
+ 	double rssiMetricPercentage = default (20);
+ 	double energyThreshold = default (0.5);
 	bool collectTraceInfo = default (false);
-	int distanceThreshold = default (8);
+	int distanceThreshold = default (20);
 	int maxNetFrameSize = default (0);					// bytes, 0 means no limit
 	int netBufferSize = default (32);					// number of messages
 	int netDataFrameOverhead = default (14);			// bytes

@@ -28,10 +28,11 @@ packet EAmultipathRingsRoutingPacket extends RoutingPacket {
 	int senderLevel;	// 1 byte
 	float energyLevel;	//4 bytes
 	float harvestingRate;	//4 bytes
+	float kidsStatus;	//4 bytes
 	int myX;
 	int myY;
-	int sX;
-	int sY;
+	//int sX;
+	//int sY;
 	//DATA packet overhead contains all fields, making its total size 13 bytes
 	//SETUP packet does not contain sequence number field, making its size 12 bytes
 }
