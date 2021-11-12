@@ -188,7 +188,7 @@ void EAmultipathRingsRouting::timerFiredCallback(int index)
 				isConnected = true;
 				sendControlMessage(MPRINGS_CONNECTED_TO_TREE);
 				setTimer(ENERGY_MSG,5);
-				//trace() << "Connected to " << currentSinkID << " at level " << currentLevel;
+				trace() << "Connected to " << currentSinkID << " at level " << currentLevel;
 				if (!TXBuffer.empty())
 					processBufferedPacket();
 			} else {
@@ -257,11 +257,12 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 	if (!netPacket)
 		return;
 
+	int senderLevel = netPacket->getSenderLevel();
+	
 	switch (netPacket->getEamultipathRingsRoutingPacketKind()) {
 		
 		case MPRINGS_ENERGY_PACKET:{
 		
-			int senderLevel = netPacket->getSenderLevel();	//get sender's level to see if it qualifies to be my neighbour
 			float energyLevel = netPacket->getEnergyLevel(); //get the new neighbour's energy
 			float harvestingRate = netPacket->getHarvestingRate(); //get the new neighbour's harvesting rate
 			float kidsStatus = netPacket->getKidsStatus(); //get the neighbour's kids status
@@ -301,10 +302,19 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 			//if (rssi < rssiThreshold)
 			//	return;
 			float distance = sqrt(pow((myX-nX),2)+pow((myY-nY),2));
-			trace() << "distance: "<<distance;
+			trace() << "distance: "<<distance << " from: "<< src;
 			if ( distance > distanceThreshold )
 				return;
-
+				
+				
+			//we want the ring number 1 to be larger, so that its nodes are not exhausted
+			/*if ( (senderLevel == 0) && (distance > (distanceThreshold+2)) ){
+				trace() << "Failed distance sink threshold: ";
+				return;
+			}else if ( (senderLevel != 0) && (distance > distanceThreshold )){
+				trace() << "Failed distance threshold: ";
+				return;
+			}*/
 			
 			if (isSink)
 				break;
@@ -331,7 +341,6 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 		
 			collectOutput("Propagated_data");
 			string dst(netPacket->getDestination());
-			int senderLevel = netPacket->getSenderLevel();
 			int sinkID = netPacket->getSinkID();
 
 			if (dst.compare(BROADCAST_NETWORK_ADDRESS) == 0 ||
@@ -389,7 +398,7 @@ int EAmultipathRingsRouting::findNextHop(){
 	int nextHop = 0;
 	
 	/* Obtain a pointer to the energy predictor module */
-	VirtualEnergyPredictor* predictorModule = check_and_cast<VirtualEnergyPredictor*>(getParentModule()
+	/*VirtualEnergyPredictor* predictorModule = check_and_cast<VirtualEnergyPredictor*>(getParentModule()
 	->getParentModule()->getSubmodule("ResourceManager")->getSubmodule("EnergySubsystem")->getSubmodule("EnergyPrediction"));
 
 	simtime_t predTime = simTime().dbl()+10;
@@ -397,7 +406,7 @@ int EAmultipathRingsRouting::findNextHop(){
 	
 	trace()<<"Prediction: "<<predHarvPwr;
 	collectOutput("Predictions");
-	collectOutput("Predictions", predHarvPwr);
+	collectOutput("Predictions", predHarvPwr);*/
 	
 	//if (no_neighbours){
 	//    nextHop = BROADCAST_MAC_ADDRESS;
@@ -413,6 +422,7 @@ int EAmultipathRingsRouting::findNextHop(){
 	    double metric = kids_status + h_energyMetricPercentage*100*harvesting_rate + energyMetricPercentage*100*energy + rssiMetricPercentage*0.1*rssi;
 
 	    trace() << "Map of Neighbours of "<<self<<": "<< it->first <<", Energy: "<< energy <<", Harvesting: "<< harvesting_rate <<", RSSI: "<< rssi << ", Kids status: "<< kids_status;
+	    trace() << "Energy: " <<energyMetricPercentage*100*energy << ", Harvesting: "<< h_energyMetricPercentage*100*harvesting_rate <<", RSSI:  "<<rssiMetricPercentage*0.1*rssi<<", kids_status: "<< kids_status <<", Metric is "<<metric<<"\n";
 	    
 	    //trace() << "RSSI in map: "<< rssiMetricPercentage*0.1*rssi <<", Harvesting is: "<< h_energyMetricPercentage*1000*harvesting_rate <<", Energy is " <<energyMetricPercentage*100*energy <<" Metric is "<<metric<<"\n";
 	    
@@ -431,7 +441,7 @@ int EAmultipathRingsRouting::findNextHop(){
 		emergency = false;
 	}
 	trace()<<"Max Metric: "<<maxMetric;
-	trace() << "Number of Neighbours of "<<self<<": "<< neighboursMap.size();
+	trace() << "Number of Neighbours of "<<self<<": "<< neighboursMap.size() <<" and level is "<<currentLevel;
 	return nextHop;
 }
 
