@@ -46,6 +46,7 @@ class ValueReporting: public VirtualApplication {
 	int packetsSentSum;
 	int ssum;
 	int rsum;
+	int lsum;
 	map<long, double> packetLatency;
 	map<long,int> packetsReceived;
 	map<long,int> bytesReceived;

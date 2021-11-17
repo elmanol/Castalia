@@ -30,8 +30,9 @@ void EAmultipathRingsRouting::startup()
 	distanceThreshold = par("distanceThreshold");
 	energyMetricPercentage = par("energyMetricPercentage");
 	rssiMetricPercentage = par("rssiMetricPercentage");
+	kidsMetricPercentage = par("kidsMetricPercentage");
 	energyThreshold = par("energyThreshold");
-	h_energyMetricPercentage = 1 - energyMetricPercentage - rssiMetricPercentage;
+	h_energyMetricPercentage = par("h_energyMetricPercentage");
 	
 	startupDelay = par("startupDelay");
 	rssiThreshold = par("rssiThreshold");
@@ -157,6 +158,8 @@ void EAmultipathRingsRouting::timerFiredCallback(int index)
 		}
 		if (!counter)
 		    kids_status = (currentEnergyRatio+HarvestingRate);
+		else
+			kids_status = kids_status/counter;
 	
 		//trace()<<"Harvesting Rate: "<< HarvestingRate << ", Remaining Energy: "<<currentEnergyRatio << ", MaxHarvestingPower: "<< MaxHarvestingPower;
 		
@@ -187,13 +190,13 @@ void EAmultipathRingsRouting::timerFiredCallback(int index)
 			if (!isConnected) {
 				isConnected = true;
 				sendControlMessage(MPRINGS_CONNECTED_TO_TREE);
-				setTimer(ENERGY_MSG,5);
+				setTimer(ENERGY_MSG,20);
 				trace() << "Connected to " << currentSinkID << " at level " << currentLevel;
 				if (!TXBuffer.empty())
 					processBufferedPacket();
 			} else {
 				sendControlMessage(MPRINGS_TREE_LEVEL_UPDATED);
-				setTimer(ENERGY_MSG,5);
+				setTimer(ENERGY_MSG,20);
 				//trace() << "Reconnected to " << currentSinkID << " at level " << currentLevel;
 			}
 			sendTopologySetupPacket();
@@ -394,7 +397,7 @@ void EAmultipathRingsRouting::fromMacLayer(cPacket * pkt, int macAddress, double
 
 int EAmultipathRingsRouting::findNextHop(){
 
-	double maxMetric = -1;
+	double maxMetric = -1000;
 	int nextHop = 0;
 	
 	/* Obtain a pointer to the energy predictor module */
@@ -419,13 +422,12 @@ int EAmultipathRingsRouting::findNextHop(){
 	    float harvesting_rate = (it->second).HarvestingRate;
     	    float kids_status = (it->second).KidsStatus;    
 	    float rssi = (it->second).Rssi;
-	    double metric = kids_status + h_energyMetricPercentage*100*harvesting_rate + energyMetricPercentage*100*energy + rssiMetricPercentage*0.1*rssi;
+	    double metric = 0.1*kidsMetricPercentage*kids_status + h_energyMetricPercentage*harvesting_rate + energyMetricPercentage*energy + 2*0.01*rssiMetricPercentage*(100+rssi);
 
 	    trace() << "Map of Neighbours of "<<self<<": "<< it->first <<", Energy: "<< energy <<", Harvesting: "<< harvesting_rate <<", RSSI: "<< rssi << ", Kids status: "<< kids_status;
-	    trace() << "Energy: " <<energyMetricPercentage*100*energy << ", Harvesting: "<< h_energyMetricPercentage*100*harvesting_rate <<", RSSI:  "<<rssiMetricPercentage*0.1*rssi<<", kids_status: "<< kids_status <<", Metric is "<<metric<<"\n";
+	    trace() << "Energy: " <<energyMetricPercentage*energy << ", Harvesting: "<< h_energyMetricPercentage*harvesting_rate <<", RSSI:  "<< 0.01*rssiMetricPercentage*(100+rssi)<<", kids_status: "<< 0.1*kidsMetricPercentage*kids_status <<", Metric is "<<metric<<"\n";
 	    
 	    //trace() << "RSSI in map: "<< rssiMetricPercentage*0.1*rssi <<", Harvesting is: "<< h_energyMetricPercentage*1000*harvesting_rate <<", Energy is " <<energyMetricPercentage*100*energy <<" Metric is "<<metric<<"\n";
-	    
 	    
 	    if (metric > maxMetric){
 	    	
@@ -434,7 +436,8 @@ int EAmultipathRingsRouting::findNextHop(){
 	    
 	    }
 	}
-	if (maxMetric < energyThreshold && maxMetric!=-1){
+//	if (maxMetric < energyThreshold && maxMetric!=-1){
+	if (false){
 		emergency = true;
 		nextHop = BROADCAST_MAC_ADDRESS;
 	}else{

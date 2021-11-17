@@ -15,8 +15,10 @@ package node.communication.routing.eamultipathRingsRouting;
 simple EAmultipathRingsRouting like node.communication.routing.iRouting {
  parameters:
 
- 	double energyMetricPercentage = default (80);
+ 	double energyMetricPercentage = default (50);
  	double rssiMetricPercentage = default (20);
+  	double kidsMetricPercentage = default (20);
+  	double h_energyMetricPercentage = default (10);
  	double energyThreshold = default (0.01);
 	bool collectTraceInfo = default (false);
 	int distanceThreshold = default (25);

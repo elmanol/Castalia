@@ -42,6 +42,7 @@ class EAmultipathRingsRouting: public VirtualRouting {
 	double sendEnergyTimer;
 	double energyMetricPercentage;
 	double h_energyMetricPercentage;
+	double kidsMetricPercentage;
 	double rssiMetricPercentage;
 	int distanceThreshold;
 	double energyThreshold;

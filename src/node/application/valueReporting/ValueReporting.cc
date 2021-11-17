@@ -30,6 +30,7 @@ void ValueReporting::startup()
 	metricsSN=0;
 	ssum=0;
 	rsum=0;
+	lsum=0;
 	declareOutput("Packets sensed per node");
 	int locX = mobilityModule->getLocation().x;
 	int locY = mobilityModule->getLocation().y;
@@ -92,7 +93,7 @@ void ValueReporting::timerFiredCallback(int index)
 				
 			}		
 
-			collectOutput("Avg Latency", metricsSN, "total", total_latency/packetsSentSum);
+		    collectOutput("Avg Latency", metricsSN, "total", (total_latency-lsum)/(packetsReceivedSum-rsum));
 			//collectOutput("Packets Rate", metricsSN, "total", total_received/packetsSentSum);
 
 			float prr = (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum);
@@ -115,6 +116,7 @@ void ValueReporting::timerFiredCallback(int index)
 			
 			rsum = packetsReceivedSum;
 			ssum = packetsSentSum;
+			lsum = total_latency;
 			
 			delete(topo);
 			
@@ -219,7 +221,7 @@ void ValueReporting::finishSpecific() {
 			
 		}		
 
-		collectOutput("Avg Latency", metricsSN, "total", total_latency/packetsSentSum);
+		collectOutput("Avg Latency", metricsSN, "total", (total_latency-lsum)/(packetsReceivedSum-rsum));
 		//collectOutput("Packets Rate", metricsSN, "total", total_received/packetsSentSum);
 		//collectOutput("Packets Loss Rate", metricsSN, "total", 1-total_received/packetsSentSum);
 		float prr = (float)(packetsReceivedSum-rsum)/(packetsSentSum - ssum);
