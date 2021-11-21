@@ -45,6 +45,10 @@ void ValueReporting::startup()
 	declareOutput("Avg Latency");
 	declareOutput("Packets Sent");
 	declareOutput("Packets Received");
+	declareOutput("Packets Sent2");
+	declareOutput("Packets Received2");
+	declareOutput("PRR2");
+
 	//declareOutput("Packets ssum");
 	//declareOutput("Packets packetsSentSum");
 	declareOutput("Simulation duration");
@@ -238,6 +242,9 @@ void ValueReporting::finishSpecific() {
 		//collectOutput("Packets packetsSentSum", metricsSN, "total", packetsSentSum);
 		collectOutput("Packets Sent", metricsSN, "total", (packetsSentSum-ssum));
 		collectOutput("Packets Received", metricsSN, "total", (packetsReceivedSum-rsum));
+		collectOutput("Packets Sent2", 0, "total", (packetsSentSum));
+		collectOutput("Packets Received2", 0, "total", (packetsReceivedSum));
+		collectOutput("PRR2", 0, "total", (packetsReceivedSum/packetsSentSum));
 		
 
 		delete(topo);
