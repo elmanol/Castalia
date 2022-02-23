@@ -1,0 +1,2358 @@
+Castalia| what:[SREH,MPR] (1)
+Castalia| when:2021-11-22 23:11
+Castalia| repeat:0 label:SREH
+Castalia|		module:SN.Simulation
+Castalia|			simple output name:Execution time, seconds
+Castalia|				220.328
+Castalia|			simple output name:Execution ratio (simtime/realtime)
+Castalia|				65.3571039541
+Castalia|	module:SN.node[0].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			63.7591 Charged
+Castalia|			63.7591 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			63.7591 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[0].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000191249 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			210.226 Supplied
+Castalia|			456.245 Wasted
+Castalia|	module:SN.node[0].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			12256 Failed with interference
+Castalia|			5722 Failed, non RX state
+Castalia|			746037 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			692477 TX pkts
+Castalia|	module:SN.node[0].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			345038 ACK
+Castalia|			345038 CTS
+Castalia|			1 DATA
+Castalia|			2400 SYNC
+Castalia|	module:SN.node[0].Communication.Routing
+Castalia|		simple output name:Propagated_data
+Castalia|			345038 
+Castalia|	module:SN.node[0].Application
+Castalia|		 index:1 simple output name:Avg Latency
+Castalia|			0.360786 total
+Castalia|		 index:2 simple output name:Avg Latency
+Castalia|			0.351301 total
+Castalia|		 index:3 simple output name:Avg Latency
+Castalia|			0.370089 total
+Castalia|		 index:4 simple output name:Avg Latency
+Castalia|			0.3733 total
+Castalia|		 index:5 simple output name:Avg Latency
+Castalia|			0.370732 total
+Castalia|		 index:6 simple output name:Avg Latency
+Castalia|			0.366754 total
+Castalia|		 index:7 simple output name:Avg Latency
+Castalia|			0.367939 total
+Castalia|		 index:8 simple output name:Avg Latency
+Castalia|			0.37277 total
+Castalia|		 index:0 simple output name:PRR2
+Castalia|			0 total
+Castalia|		 index:1 simple output name:Packets Loss Rate
+Castalia|			0.001091 total
+Castalia|		 index:2 simple output name:Packets Loss Rate
+Castalia|			0.00231481 total
+Castalia|		 index:3 simple output name:Packets Loss Rate
+Castalia|			0.00134254 total
+Castalia|		 index:4 simple output name:Packets Loss Rate
+Castalia|			0.000648022 total
+Castalia|		 index:5 simple output name:Packets Loss Rate
+Castalia|			0.00111109 total
+Castalia|		 index:6 simple output name:Packets Loss Rate
+Castalia|			0.00106472 total
+Castalia|		 index:7 simple output name:Packets Loss Rate
+Castalia|			0.00101852 total
+Castalia|		 index:8 simple output name:Packets Loss Rate
+Castalia|			0.00162101 total
+Castalia|		 index:1 simple output name:Packets Received
+Castalia|			43033 total
+Castalia|		 index:2 simple output name:Packets Received
+Castalia|			43100 total
+Castalia|		 index:3 simple output name:Packets Received
+Castalia|			43144 total
+Castalia|		 index:4 simple output name:Packets Received
+Castalia|			43179 total
+Castalia|		 index:5 simple output name:Packets Received
+Castalia|			43153 total
+Castalia|		 index:6 simple output name:Packets Received
+Castalia|			43159 total
+Castalia|		 index:7 simple output name:Packets Received
+Castalia|			43157 total
+Castalia|		 index:8 simple output name:Packets Received
+Castalia|			43113 total
+Castalia|		 index:0 simple output name:Packets Received2
+Castalia|			345038 total
+Castalia|		 index:1 simple output name:Packets Reception Rate
+Castalia|			0.998909 total
+Castalia|		 index:2 simple output name:Packets Reception Rate
+Castalia|			0.997685 total
+Castalia|		 index:3 simple output name:Packets Reception Rate
+Castalia|			0.998657 total
+Castalia|		 index:4 simple output name:Packets Reception Rate
+Castalia|			0.999352 total
+Castalia|		 index:5 simple output name:Packets Reception Rate
+Castalia|			0.998889 total
+Castalia|		 index:6 simple output name:Packets Reception Rate
+Castalia|			0.998935 total
+Castalia|		 index:7 simple output name:Packets Reception Rate
+Castalia|			0.998981 total
+Castalia|		 index:8 simple output name:Packets Reception Rate
+Castalia|			0.998379 total
+Castalia|		 index:1 simple output name:Packets Sent
+Castalia|			43080 total
+Castalia|		 index:2 simple output name:Packets Sent
+Castalia|			43200 total
+Castalia|		 index:3 simple output name:Packets Sent
+Castalia|			43202 total
+Castalia|		 index:4 simple output name:Packets Sent
+Castalia|			43207 total
+Castalia|		 index:5 simple output name:Packets Sent
+Castalia|			43201 total
+Castalia|		 index:6 simple output name:Packets Sent
+Castalia|			43205 total
+Castalia|		 index:7 simple output name:Packets Sent
+Castalia|			43201 total
+Castalia|		 index:8 simple output name:Packets Sent
+Castalia|			43183 total
+Castalia|		 index:0 simple output name:Packets Sent2
+Castalia|			345479 total
+Castalia|	module:SN.node[1].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.437 Charged
+Castalia|			65.437 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.437 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[1].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			2.45573e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.095 Supplied
+Castalia|			453.254 Wasted
+Castalia|	module:SN.node[1].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11453 Failed with interference
+Castalia|			2036 Failed, non RX state
+Castalia|			1.41124e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31765 TX pkts
+Castalia|	module:SN.node[1].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14496 DATA
+Castalia|			14911 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[1].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.7 
+Castalia|	module:SN.node[2].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.3619 Charged
+Castalia|			65.3619 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.3619 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[2].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000245885 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			211.953 Supplied
+Castalia|			453.479 Wasted
+Castalia|	module:SN.node[2].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11536 Failed with interference
+Castalia|			5651 Failed, non RX state
+Castalia|			1.40774e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31562 TX pkts
+Castalia|	module:SN.node[2].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14508 DATA
+Castalia|			14697 RTS
+Castalia|			2357 SYNC
+Castalia|	module:SN.node[2].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14394 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.4 
+Castalia|	module:SN.node[3].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4606 Charged
+Castalia|			65.4606 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4606 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[3].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000291649 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.131 Supplied
+Castalia|			453.191 Wasted
+Castalia|	module:SN.node[3].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11471 Failed with interference
+Castalia|			1242 Failed, non RX state
+Castalia|			1.41189e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31887 TX pkts
+Castalia|	module:SN.node[3].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14502 DATA
+Castalia|			15028 RTS
+Castalia|			2357 SYNC
+Castalia|	module:SN.node[3].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.5 
+Castalia|	module:SN.node[4].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4167 Charged
+Castalia|			65.4167 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4167 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[4].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000101009 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.081 Supplied
+Castalia|			453.29 Wasted
+Castalia|	module:SN.node[4].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11525 Failed with interference
+Castalia|			2514 Failed, non RX state
+Castalia|			1.41074e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31708 TX pkts
+Castalia|	module:SN.node[4].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14496 DATA
+Castalia|			14854 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[4].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.8 
+Castalia|	module:SN.node[5].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.3929 Charged
+Castalia|			65.3929 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.3929 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[5].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			4.2128e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.018 Supplied
+Castalia|			453.383 Wasted
+Castalia|	module:SN.node[5].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11488 Failed with interference
+Castalia|			4032 Failed, non RX state
+Castalia|			1.40938e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31589 TX pkts
+Castalia|	module:SN.node[5].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14504 DATA
+Castalia|			14727 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[5].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14394 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.1 
+Castalia|	module:SN.node[6].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.5131 Charged
+Castalia|			65.5131 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.5131 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[6].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000177371 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.219 Supplied
+Castalia|			453.06 Wasted
+Castalia|	module:SN.node[6].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11565 Failed with interference
+Castalia|			587 Failed, non RX state
+Castalia|			1.4124e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31944 TX pkts
+Castalia|	module:SN.node[6].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14493 DATA
+Castalia|			15093 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[6].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.2 
+Castalia|	module:SN.node[7].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.5135 Charged
+Castalia|			65.5135 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.5135 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[7].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000197678 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.232 Supplied
+Castalia|			453.044 Wasted
+Castalia|	module:SN.node[7].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11478 Failed with interference
+Castalia|			620 Failed, non RX state
+Castalia|			1.41239e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			32002 TX pkts
+Castalia|	module:SN.node[7].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14496 DATA
+Castalia|			15148 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[7].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.2 
+Castalia|	module:SN.node[8].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4975 Charged
+Castalia|			65.4975 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4975 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[8].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000310051 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.2 Supplied
+Castalia|			453.09 Wasted
+Castalia|	module:SN.node[8].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11555 Failed with interference
+Castalia|			606 Failed, non RX state
+Castalia|			1.41237e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31958 TX pkts
+Castalia|	module:SN.node[8].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14495 DATA
+Castalia|			15106 RTS
+Castalia|			2357 SYNC
+Castalia|	module:SN.node[8].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.2 
+Castalia|	module:SN.node[9].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4177 Charged
+Castalia|			65.4177 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4177 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[9].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000151758 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.066 Supplied
+Castalia|			453.303 Wasted
+Castalia|	module:SN.node[9].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11544 Failed with interference
+Castalia|			2864 Failed, non RX state
+Castalia|			1.41043e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31656 TX pkts
+Castalia|	module:SN.node[9].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14502 DATA
+Castalia|			14797 RTS
+Castalia|			2357 SYNC
+Castalia|	module:SN.node[9].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.9 
+Castalia|	module:SN.node[10].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4443 Charged
+Castalia|			65.4443 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4443 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[10].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000311213 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.115 Supplied
+Castalia|			453.231 Wasted
+Castalia|	module:SN.node[10].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11558 Failed with interference
+Castalia|			1593 Failed, non RX state
+Castalia|			1.41156e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31776 TX pkts
+Castalia|	module:SN.node[10].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14500 DATA
+Castalia|			14918 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[10].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.6 
+Castalia|	module:SN.node[11].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.5324 Charged
+Castalia|			65.5324 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.5324 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[11].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			6.50973e-06 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.257 Supplied
+Castalia|			453.004 Wasted
+Castalia|	module:SN.node[11].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11668 Failed with interference
+Castalia|			508 Failed, non RX state
+Castalia|			1.41233e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31988 TX pkts
+Castalia|	module:SN.node[11].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14499 DATA
+Castalia|			15131 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[11].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.1 
+Castalia|	module:SN.node[12].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4457 Charged
+Castalia|			65.4457 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4457 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[12].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			4.3606e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.105 Supplied
+Castalia|			453.24 Wasted
+Castalia|	module:SN.node[12].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11525 Failed with interference
+Castalia|			1679 Failed, non RX state
+Castalia|			1.4115e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31787 TX pkts
+Castalia|	module:SN.node[12].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14501 DATA
+Castalia|			14928 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[12].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.7 
+Castalia|	module:SN.node[13].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4059 Charged
+Castalia|			65.4059 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4059 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[13].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			1.41079e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.051 Supplied
+Castalia|			453.332 Wasted
+Castalia|	module:SN.node[13].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11475 Failed with interference
+Castalia|			3124 Failed, non RX state
+Castalia|			1.41022e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31670 TX pkts
+Castalia|	module:SN.node[13].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14502 DATA
+Castalia|			14810 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[13].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.9 
+Castalia|	module:SN.node[14].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4662 Charged
+Castalia|			65.4662 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4662 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[14].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			7.19593e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.153 Supplied
+Castalia|			453.174 Wasted
+Castalia|	module:SN.node[14].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11621 Failed with interference
+Castalia|			1125 Failed, non RX state
+Castalia|			1.41193e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31815 TX pkts
+Castalia|	module:SN.node[14].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14498 DATA
+Castalia|			14960 RTS
+Castalia|			2357 SYNC
+Castalia|	module:SN.node[14].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.5 
+Castalia|	module:SN.node[15].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.2933 Charged
+Castalia|			65.2933 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.2933 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[15].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			8.60723e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			211.868 Supplied
+Castalia|			453.627 Wasted
+Castalia|	module:SN.node[15].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11261 Failed with interference
+Castalia|			8044 Failed, non RX state
+Castalia|			1.40562e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31570 TX pkts
+Castalia|	module:SN.node[15].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14503 DATA
+Castalia|			14709 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[15].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14394 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.8 
+Castalia|	module:SN.node[16].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.5547 Charged
+Castalia|			65.5547 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.5547 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[16].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			1.78706e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.274 Supplied
+Castalia|			452.959 Wasted
+Castalia|	module:SN.node[16].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11548 Failed with interference
+Castalia|			611 Failed, non RX state
+Castalia|			1.4122e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			32130 TX pkts
+Castalia|	module:SN.node[16].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14480 DATA
+Castalia|			15292 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[16].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.8 
+Castalia|	module:SN.node[17].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4707 Charged
+Castalia|			65.4707 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4707 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[17].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			3.24832e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.154 Supplied
+Castalia|			453.162 Wasted
+Castalia|	module:SN.node[17].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11661 Failed with interference
+Castalia|			837 Failed, non RX state
+Castalia|			1.41212e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31872 TX pkts
+Castalia|	module:SN.node[17].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14507 DATA
+Castalia|			15007 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[17].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.4 
+Castalia|	module:SN.node[18].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4133 Charged
+Castalia|			65.4133 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4133 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[18].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000153059 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.066 Supplied
+Castalia|			453.306 Wasted
+Castalia|	module:SN.node[18].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11471 Failed with interference
+Castalia|			2938 Failed, non RX state
+Castalia|			1.41041e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31673 TX pkts
+Castalia|	module:SN.node[18].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14499 DATA
+Castalia|			14817 RTS
+Castalia|			2357 SYNC
+Castalia|	module:SN.node[18].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.9 
+Castalia|	module:SN.node[19].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.5386 Charged
+Castalia|			65.5386 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.5386 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[19].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000241258 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.267 Supplied
+Castalia|			452.976 Wasted
+Castalia|	module:SN.node[19].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11620 Failed with interference
+Castalia|			528 Failed, non RX state
+Castalia|			1.4122e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			32147 TX pkts
+Castalia|	module:SN.node[19].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14493 DATA
+Castalia|			15296 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[19].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.9 
+Castalia|	module:SN.node[20].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4543 Charged
+Castalia|			65.4543 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4543 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[20].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			1.03737e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.13 Supplied
+Castalia|			453.211 Wasted
+Castalia|	module:SN.node[20].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11534 Failed with interference
+Castalia|			1267 Failed, non RX state
+Castalia|			1.41186e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31835 TX pkts
+Castalia|	module:SN.node[20].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14496 DATA
+Castalia|			14981 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[20].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.6 
+Castalia|	module:SN.node[21].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.4014 Charged
+Castalia|			65.4014 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.4014 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[21].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			5.04757e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.036 Supplied
+Castalia|			453.357 Wasted
+Castalia|	module:SN.node[21].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11473 Failed with interference
+Castalia|			3655 Failed, non RX state
+Castalia|			1.40973e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31634 TX pkts
+Castalia|	module:SN.node[21].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14501 DATA
+Castalia|			14776 RTS
+Castalia|			2357 SYNC
+Castalia|	module:SN.node[21].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14394 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399 
+Castalia|	module:SN.node[22].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.5156 Charged
+Castalia|			65.5156 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.5156 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[22].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000158623 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.227 Supplied
+Castalia|			453.045 Wasted
+Castalia|	module:SN.node[22].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11496 Failed with interference
+Castalia|			595 Failed, non RX state
+Castalia|			1.4124e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31998 TX pkts
+Castalia|	module:SN.node[22].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14496 DATA
+Castalia|			15144 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[22].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.1 
+Castalia|	module:SN.node[23].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.5224 Charged
+Castalia|			65.5224 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.5224 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[23].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000157351 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.241 Supplied
+Castalia|			453.023 Wasted
+Castalia|	module:SN.node[23].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11566 Failed with interference
+Castalia|			557 Failed, non RX state
+Castalia|			1.41238e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			31991 TX pkts
+Castalia|	module:SN.node[23].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14488 DATA
+Castalia|			15145 RTS
+Castalia|			2358 SYNC
+Castalia|	module:SN.node[23].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.1 
+Castalia|	module:SN.node[24].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			65.5243 Charged
+Castalia|			65.5243 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			65.5243 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[24].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000225397 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			212.248 Supplied
+Castalia|			453.009 Wasted
+Castalia|	module:SN.node[24].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			11613 Failed with interference
+Castalia|			531 Failed, non RX state
+Castalia|			1.41229e+06 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			32058 TX pkts
+Castalia|	module:SN.node[24].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14487 DATA
+Castalia|			15214 RTS
+Castalia|			2357 SYNC
+Castalia|	module:SN.node[24].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14400 
+Castalia| repeat:0 label:MPR
+Castalia|		module:SN.Simulation
+Castalia|			simple output name:Execution time, seconds
+Castalia|				76.186
+Castalia|			simple output name:Execution ratio (simtime/realtime)
+Castalia|				189.011104402
+Castalia|	module:SN.node[0].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.1781 Charged
+Castalia|			53.1781 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.1781 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[0].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000191249 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			192.296 Supplied
+Castalia|			485.386 Wasted
+Castalia|	module:SN.node[0].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2182 Failed with interference
+Castalia|			13848 Failed, non RX state
+Castalia|			284599 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			1587 TX pkts
+Castalia|	module:SN.node[0].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			1 DATA
+Castalia|			1586 SYNC
+Castalia|	module:SN.node[0].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			270265 
+Castalia|	module:SN.node[0].Application
+Castalia|		 index:1 simple output name:Avg Latency
+Castalia|			18.1938 total
+Castalia|		 index:2 simple output name:Avg Latency
+Castalia|			18.3678 total
+Castalia|		 index:3 simple output name:Avg Latency
+Castalia|			17.924 total
+Castalia|		 index:4 simple output name:Avg Latency
+Castalia|			18.282 total
+Castalia|		 index:5 simple output name:Avg Latency
+Castalia|			18.0508 total
+Castalia|		 index:6 simple output name:Avg Latency
+Castalia|			18.1726 total
+Castalia|		 index:7 simple output name:Avg Latency
+Castalia|			17.2404 total
+Castalia|		 index:8 simple output name:Avg Latency
+Castalia|			18.7948 total
+Castalia|		 index:0 simple output name:PRR2
+Castalia|			0 total
+Castalia|		 index:1 simple output name:Packets Loss Rate
+Castalia|			0.227503 total
+Castalia|		 index:2 simple output name:Packets Loss Rate
+Castalia|			0.221191 total
+Castalia|		 index:3 simple output name:Packets Loss Rate
+Castalia|			0.211778 total
+Castalia|		 index:4 simple output name:Packets Loss Rate
+Castalia|			0.221227 total
+Castalia|		 index:5 simple output name:Packets Loss Rate
+Castalia|			0.214074 total
+Castalia|		 index:6 simple output name:Packets Loss Rate
+Castalia|			0.222924 total
+Castalia|		 index:7 simple output name:Packets Loss Rate
+Castalia|			0.198468 total
+Castalia|		 index:8 simple output name:Packets Loss Rate
+Castalia|			0.224721 total
+Castalia|		 index:1 simple output name:Packets Received
+Castalia|			33290 total
+Castalia|		 index:2 simple output name:Packets Received
+Castalia|			33650 total
+Castalia|		 index:3 simple output name:Packets Received
+Castalia|			34052 total
+Castalia|		 index:4 simple output name:Packets Received
+Castalia|			33643 total
+Castalia|		 index:5 simple output name:Packets Received
+Castalia|			33952 total
+Castalia|		 index:6 simple output name:Packets Received
+Castalia|			33572 total
+Castalia|		 index:7 simple output name:Packets Received
+Castalia|			34631 total
+Castalia|		 index:8 simple output name:Packets Received
+Castalia|			33475 total
+Castalia|		 index:0 simple output name:Packets Received2
+Castalia|			270265 total
+Castalia|		 index:1 simple output name:Packets Reception Rate
+Castalia|			0.772497 total
+Castalia|		 index:2 simple output name:Packets Reception Rate
+Castalia|			0.778809 total
+Castalia|		 index:3 simple output name:Packets Reception Rate
+Castalia|			0.788222 total
+Castalia|		 index:4 simple output name:Packets Reception Rate
+Castalia|			0.778773 total
+Castalia|		 index:5 simple output name:Packets Reception Rate
+Castalia|			0.785926 total
+Castalia|		 index:6 simple output name:Packets Reception Rate
+Castalia|			0.777076 total
+Castalia|		 index:7 simple output name:Packets Reception Rate
+Castalia|			0.801532 total
+Castalia|		 index:8 simple output name:Packets Reception Rate
+Castalia|			0.775279 total
+Castalia|		 index:1 simple output name:Packets Sent
+Castalia|			43094 total
+Castalia|		 index:2 simple output name:Packets Sent
+Castalia|			43207 total
+Castalia|		 index:3 simple output name:Packets Sent
+Castalia|			43201 total
+Castalia|		 index:4 simple output name:Packets Sent
+Castalia|			43200 total
+Castalia|		 index:5 simple output name:Packets Sent
+Castalia|			43200 total
+Castalia|		 index:6 simple output name:Packets Sent
+Castalia|			43203 total
+Castalia|		 index:7 simple output name:Packets Sent
+Castalia|			43206 total
+Castalia|		 index:8 simple output name:Packets Sent
+Castalia|			43178 total
+Castalia|		 index:0 simple output name:Packets Sent2
+Castalia|			345489 total
+Castalia|	module:SN.node[1].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.7859 Charged
+Castalia|			53.7859 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.7859 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[1].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			2.45573e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.313 Supplied
+Castalia|			483.74 Wasted
+Castalia|	module:SN.node[1].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2666 Failed with interference
+Castalia|			6432 Failed, non RX state
+Castalia|			279050 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			14068 TX pkts
+Castalia|	module:SN.node[1].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			13170 DATA
+Castalia|			898 SYNC
+Castalia|	module:SN.node[1].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			260547 
+Castalia|	module:SN.node[1].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.2 
+Castalia|	module:SN.node[2].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.6815 Charged
+Castalia|			53.6815 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.6815 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[2].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000245885 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.141 Supplied
+Castalia|			484.004 Wasted
+Castalia|	module:SN.node[2].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2118 Failed with interference
+Castalia|			13623 Failed, non RX state
+Castalia|			271037 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			15438 TX pkts
+Castalia|	module:SN.node[2].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14313 DATA
+Castalia|			1125 SYNC
+Castalia|	module:SN.node[2].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			256200 
+Castalia|	module:SN.node[2].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.9 
+Castalia|	module:SN.node[3].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.828 Charged
+Castalia|			53.828 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.828 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[3].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000291649 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.355 Supplied
+Castalia|			483.651 Wasted
+Castalia|	module:SN.node[3].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2805 Failed with interference
+Castalia|			4358 Failed, non RX state
+Castalia|			282267 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			12786 TX pkts
+Castalia|	module:SN.node[3].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			11949 DATA
+Castalia|			837 SYNC
+Castalia|	module:SN.node[3].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			262855 
+Castalia|	module:SN.node[3].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399 
+Castalia|	module:SN.node[4].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.768 Charged
+Castalia|			53.768 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.768 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[4].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000101009 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.294 Supplied
+Castalia|			483.774 Wasted
+Castalia|	module:SN.node[4].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2590 Failed with interference
+Castalia|			7682 Failed, non RX state
+Castalia|			277805 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			14139 TX pkts
+Castalia|	module:SN.node[4].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			13262 DATA
+Castalia|			877 SYNC
+Castalia|	module:SN.node[4].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			259871 
+Castalia|	module:SN.node[4].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.3 
+Castalia|	module:SN.node[5].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.7345 Charged
+Castalia|			53.7345 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.7345 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[5].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			4.2128e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.23 Supplied
+Castalia|			483.879 Wasted
+Castalia|	module:SN.node[5].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2425 Failed with interference
+Castalia|			10830 Failed, non RX state
+Castalia|			273981 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			14980 TX pkts
+Castalia|	module:SN.node[5].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14018 DATA
+Castalia|			962 SYNC
+Castalia|	module:SN.node[5].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			257645 
+Castalia|	module:SN.node[5].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.6 
+Castalia|	module:SN.node[6].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.8855 Charged
+Castalia|			53.8855 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.8855 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[6].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000177371 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.455 Supplied
+Castalia|			483.499 Wasted
+Castalia|	module:SN.node[6].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2918 Failed with interference
+Castalia|			1098 Failed, non RX state
+Castalia|			287054 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			11146 TX pkts
+Castalia|	module:SN.node[6].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			10291 DATA
+Castalia|			855 SYNC
+Castalia|	module:SN.node[6].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			266637 
+Castalia|	module:SN.node[6].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.7 
+Castalia|	module:SN.node[7].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.8931 Charged
+Castalia|			53.8931 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.8931 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[7].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000197678 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.458 Supplied
+Castalia|			483.485 Wasted
+Castalia|	module:SN.node[7].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2895 Failed with interference
+Castalia|			933 Failed, non RX state
+Castalia|			288115 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			10273 TX pkts
+Castalia|	module:SN.node[7].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			9406 DATA
+Castalia|			867 SYNC
+Castalia|	module:SN.node[7].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			267656 
+Castalia|	module:SN.node[7].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.7 
+Castalia|	module:SN.node[8].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.8823 Charged
+Castalia|			53.8823 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.8823 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[8].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000310051 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.445 Supplied
+Castalia|			483.514 Wasted
+Castalia|	module:SN.node[8].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2950 Failed with interference
+Castalia|			1204 Failed, non RX state
+Castalia|			287178 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			10884 TX pkts
+Castalia|	module:SN.node[8].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			10021 DATA
+Castalia|			863 SYNC
+Castalia|	module:SN.node[8].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			266806 
+Castalia|	module:SN.node[8].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.7 
+Castalia|	module:SN.node[9].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.7563 Charged
+Castalia|			53.7563 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.7563 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[9].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000151758 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.281 Supplied
+Castalia|			483.807 Wasted
+Castalia|	module:SN.node[9].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2537 Failed with interference
+Castalia|			8531 Failed, non RX state
+Castalia|			276854 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			14294 TX pkts
+Castalia|	module:SN.node[9].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			13435 DATA
+Castalia|			859 SYNC
+Castalia|	module:SN.node[9].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			259282 
+Castalia|	module:SN.node[9].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.4 
+Castalia|	module:SN.node[10].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.8098 Charged
+Castalia|			53.8098 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.8098 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[10].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000311213 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.345 Supplied
+Castalia|			483.688 Wasted
+Castalia|	module:SN.node[10].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2751 Failed with interference
+Castalia|			5465 Failed, non RX state
+Castalia|			280750 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			13250 TX pkts
+Castalia|	module:SN.node[10].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			12448 DATA
+Castalia|			802 SYNC
+Castalia|	module:SN.node[10].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			261750 
+Castalia|	module:SN.node[10].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.1 
+Castalia|	module:SN.node[11].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.9176 Charged
+Castalia|			53.9176 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.9176 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[11].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			6.50973e-06 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.499 Supplied
+Castalia|			483.43 Wasted
+Castalia|	module:SN.node[11].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2886 Failed with interference
+Castalia|			494 Failed, non RX state
+Castalia|			288926 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			9910 TX pkts
+Castalia|	module:SN.node[11].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			8996 DATA
+Castalia|			914 SYNC
+Castalia|	module:SN.node[11].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			268415 
+Castalia|	module:SN.node[11].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.6 
+Castalia|	module:SN.node[12].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.8084 Charged
+Castalia|			53.8084 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.8084 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[12].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			4.3606e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.342 Supplied
+Castalia|			483.698 Wasted
+Castalia|	module:SN.node[12].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2734 Failed with interference
+Castalia|			5667 Failed, non RX state
+Castalia|			280403 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			13412 TX pkts
+Castalia|	module:SN.node[12].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			12561 DATA
+Castalia|			851 SYNC
+Castalia|	module:SN.node[12].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			261544 
+Castalia|	module:SN.node[12].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.2 
+Castalia|	module:SN.node[13].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.7599 Charged
+Castalia|			53.7599 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.7599 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[13].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			1.41079e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.267 Supplied
+Castalia|			483.821 Wasted
+Castalia|	module:SN.node[13].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2477 Failed with interference
+Castalia|			9064 Failed, non RX state
+Castalia|			276026 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			14649 TX pkts
+Castalia|	module:SN.node[13].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			13750 DATA
+Castalia|			899 SYNC
+Castalia|	module:SN.node[13].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			258742 
+Castalia|	module:SN.node[13].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.4 
+Castalia|	module:SN.node[14].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.8303 Charged
+Castalia|			53.8303 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.8303 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[14].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			7.19593e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.364 Supplied
+Castalia|			483.645 Wasted
+Castalia|	module:SN.node[14].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2798 Failed with interference
+Castalia|			4218 Failed, non RX state
+Castalia|			282342 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			12858 TX pkts
+Castalia|	module:SN.node[14].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			11994 DATA
+Castalia|			864 SYNC
+Castalia|	module:SN.node[14].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			262896 
+Castalia|	module:SN.node[14].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399 
+Castalia|	module:SN.node[15].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.6128 Charged
+Castalia|			53.6128 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.6128 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[15].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			8.60723e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.049 Supplied
+Castalia|			484.158 Wasted
+Castalia|	module:SN.node[15].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			1762 Failed with interference
+Castalia|			17094 Failed, non RX state
+Castalia|			267718 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			15642 TX pkts
+Castalia|	module:SN.node[15].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			14389 DATA
+Castalia|			1253 SYNC
+Castalia|	module:SN.node[15].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			254796 
+Castalia|	module:SN.node[15].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14394 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.3 
+Castalia|	module:SN.node[16].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.9797 Charged
+Castalia|			53.9797 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.9797 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[16].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			1.78706e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.596 Supplied
+Castalia|			483.272 Wasted
+Castalia|	module:SN.node[16].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2970 Failed with interference
+Castalia|			126 Failed, non RX state
+Castalia|			289913 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			9207 TX pkts
+Castalia|	module:SN.node[16].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			8218 DATA
+Castalia|			989 SYNC
+Castalia|	module:SN.node[16].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			269455 
+Castalia|	module:SN.node[16].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.3 
+Castalia|	module:SN.node[17].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.8437 Charged
+Castalia|			53.8437 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.8437 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[17].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			3.24832e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.386 Supplied
+Castalia|			483.609 Wasted
+Castalia|	module:SN.node[17].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2844 Failed with interference
+Castalia|			3112 Failed, non RX state
+Castalia|			284472 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			11788 TX pkts
+Castalia|	module:SN.node[17].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			10955 DATA
+Castalia|			833 SYNC
+Castalia|	module:SN.node[17].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			264582 
+Castalia|	module:SN.node[17].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.9 
+Castalia|	module:SN.node[18].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.7487 Charged
+Castalia|			53.7487 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.7487 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[18].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000153059 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.256 Supplied
+Castalia|			483.835 Wasted
+Castalia|	module:SN.node[18].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2528 Failed with interference
+Castalia|			8621 Failed, non RX state
+Castalia|			276840 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			14227 TX pkts
+Castalia|	module:SN.node[18].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			13348 DATA
+Castalia|			879 SYNC
+Castalia|	module:SN.node[18].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			259330 
+Castalia|	module:SN.node[18].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.4 
+Castalia|	module:SN.node[19].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.9705 Charged
+Castalia|			53.9705 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.9705 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[19].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000241258 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.592 Supplied
+Castalia|			483.29 Wasted
+Castalia|	module:SN.node[19].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2930 Failed with interference
+Castalia|			146 Failed, non RX state
+Castalia|			289789 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			9351 TX pkts
+Castalia|	module:SN.node[19].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			8430 DATA
+Castalia|			921 SYNC
+Castalia|	module:SN.node[19].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			269268 
+Castalia|	module:SN.node[19].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.4 
+Castalia|	module:SN.node[20].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.8223 Charged
+Castalia|			53.8223 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.8223 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[20].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			1.03737e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.366 Supplied
+Castalia|			483.666 Wasted
+Castalia|	module:SN.node[20].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2827 Failed with interference
+Castalia|			4545 Failed, non RX state
+Castalia|			282365 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			12479 TX pkts
+Castalia|	module:SN.node[20].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			11642 DATA
+Castalia|			837 SYNC
+Castalia|	module:SN.node[20].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			263052 
+Castalia|	module:SN.node[20].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.1 
+Castalia|	module:SN.node[21].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.7443 Charged
+Castalia|			53.7443 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.7443 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[21].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			5.04757e-05 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.236 Supplied
+Castalia|			483.849 Wasted
+Castalia|	module:SN.node[21].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2409 Failed with interference
+Castalia|			10229 Failed, non RX state
+Castalia|			274738 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			14840 TX pkts
+Castalia|	module:SN.node[21].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			13896 DATA
+Castalia|			944 SYNC
+Castalia|	module:SN.node[21].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			258052 
+Castalia|	module:SN.node[21].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14395 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.5 
+Castalia|	module:SN.node[22].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.9046 Charged
+Castalia|			53.9046 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.9046 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[22].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000158623 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.488 Supplied
+Castalia|			483.461 Wasted
+Castalia|	module:SN.node[22].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2938 Failed with interference
+Castalia|			704 Failed, non RX state
+Castalia|			288180 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			10394 TX pkts
+Castalia|	module:SN.node[22].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			9509 DATA
+Castalia|			885 SYNC
+Castalia|	module:SN.node[22].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			267699 
+Castalia|	module:SN.node[22].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.6 
+Castalia|	module:SN.node[23].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.9185 Charged
+Castalia|			53.9185 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.9185 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[23].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000157351 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.502 Supplied
+Castalia|			483.424 Wasted
+Castalia|	module:SN.node[23].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2926 Failed with interference
+Castalia|			537 Failed, non RX state
+Castalia|			288473 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			10280 TX pkts
+Castalia|	module:SN.node[23].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			9386 DATA
+Castalia|			894 SYNC
+Castalia|	module:SN.node[23].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			267966 
+Castalia|	module:SN.node[23].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.6 
+Castalia|	module:SN.node[24].ResourceManager.EnergySubsystem.EnergyStorage.RechBatteries[0]
+Castalia|		simple output name:Device Energy
+Castalia|			53.9433 Charged
+Castalia|			53.9433 Drawn
+Castalia|			19440 Final
+Castalia|			19440 Initial
+Castalia|			19440 Maximum
+Castalia|			0 Minimum
+Castalia|			53.9433 Provided
+Castalia|			0 Wasted
+Castalia|	module:SN.node[24].ResourceManager.EnergySubsystem.EnergyManager
+Castalia|		simple output name:Disabled time %
+Castalia|			0.000225397 
+Castalia|		simple output name:Energy breakdown
+Castalia|			729.674 Harvested
+Castalia|			19440 Initial
+Castalia|			0 Leaked
+Castalia|			19440 Maximum
+Castalia|			1 Node switched on
+Castalia|			19440 Remaining
+Castalia|			193.555 Supplied
+Castalia|			483.358 Wasted
+Castalia|	module:SN.node[24].Communication.Radio
+Castalia|		simple output name:RX pkt breakdown
+Castalia|			2948 Failed with interference
+Castalia|			224 Failed, non RX state
+Castalia|			288710 Received with NO interference
+Castalia|		simple output name:TXed pkts
+Castalia|			10334 TX pkts
+Castalia|	module:SN.node[24].Communication.MAC
+Castalia|		simple output name:Sent packets breakdown
+Castalia|			9407 DATA
+Castalia|			927 SYNC
+Castalia|	module:SN.node[24].Communication.Routing
+Castalia|		 index:1 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:2 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:3 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		 index:4 simple output name:Battery level
+Castalia|			1 BatteryOverTime
+Castalia|		simple output name:Propagated_data
+Castalia|			268193 
+Castalia|	module:SN.node[24].Application
+Castalia|		simple output name:Packets sensed per node
+Castalia|			14396 
+Castalia|		simple output name:Simulation duration
+Castalia|			14399.5 
